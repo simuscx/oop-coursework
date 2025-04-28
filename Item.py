@@ -1,14 +1,44 @@
 class Item:
-    """
-    Represents an item (e.g., Weapon, Armor, Consumable) in the game.
+    def __init__(self, name, description, value, weight=0, rarity="Common"):
+        """
+        Initialize an Item.
 
-    :param str name: The name of the item.
-    :param str item_type: The type of the item (e.g., Weapon, Armor).
-    """
-
-    def __init__(self, name: str, item_type: str):
+        Args:
+            name (str): The name of the item.
+            description (str): A short description of the item.
+            value (int): The item's value in the game's currency.
+            weight (int, optional): The weight of the item. Defaults to 0.
+            rarity (str, optional): The rarity level of the item. Defaults to 'Common'.
+        """
         self.name = name
-        self.item_type = item_type
+        self.description = description
+        self.value = value
+        self.weight = weight
+        self.rarity = rarity
 
-    def __str__(self) -> str:
-        return f"{self.name} ({self.item_type})"
+    def __str__(self):
+        """
+        Return a string representation of the item.
+        """
+        return (f"{self.name} [{self.rarity}]\n"
+                f"Description: {self.description}\n"
+                f"Value: {self.value} coins\n"
+                f"Weight: {self.weight} kg")
+
+    def is_valuable(self):
+        """
+        Determine if the item is considered valuable.
+
+        Returns:
+            bool: True if the item's value is greater than 100, False otherwise.
+        """
+        return self.value > 100
+
+    def is_lightweight(self):
+        """
+        Determine if the item is lightweight.
+
+        Returns:
+            bool: True if the item's weight is less than or equal to 2, False otherwise.
+        """
+        return self.weight <= 2
