@@ -31,8 +31,41 @@ class CharacterBuilder:
         :return CharacterBuilder: Returns the builder for chaining.
         """
         if char_class == "Barbarian":
-            self.character = Barbarian(name=None, character_class=char_class, stats={})
-        # Additional character classes like Bard, Wizard, etc., can be added here.
+            self.character = Barbarian(name="Unnamed", stats={})
+
+        if char_class == "Bard":
+            self.character = Bard(name="Unnamed", stats={})
+
+        if char_class == "Cleric":
+            self.character = Cleric(name="Unnamed", stats={})
+
+        if char_class == "Druid":
+            self.character = Druid(name="Unnamed", stats={})
+
+        if char_class == "Fighter":
+            self.character = Fighter(name="Unnamed", stats={})
+
+        if char_class == "Monk":
+            self.character = Monk(name="Unnamed", stats={})
+
+        if char_class == "Paladin":
+            self.character = Paladin(name="Unnamed", stats={})
+
+        if char_class == "Ranger":
+            self.character = Ranger(name="Unnamed", stats={})
+
+        if char_class == "Rogue":
+            self.character = Rogue(name="Unnamed", stats={})
+
+        if char_class == "Sorcerer":
+            self.character = Sorcerer(name="Unnamed", stats={})
+
+        if char_class == "Warlock":
+            self.character = Warlock(name="Unnamed", stats={})
+
+        if char_class == "Wizard":
+            self.character = Wizard(name="Unnamed", stats={})
+
         return self
 
     def set_stats(self, stats: dict) -> "CharacterBuilder":

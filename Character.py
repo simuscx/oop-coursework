@@ -13,7 +13,7 @@ class Character(abc.ABC):
     :param dict stats: A dictionary of the character's stats (e.g., STR, DEX).
     """
 
-    def __init__(self, name: str, character_class: str, stats: dict):
+    def __init__(self, name: str, character_class: str, stats: dict) -> None:
         self._name = name
         self._character_class = character_class
         self._stats = stats
@@ -124,6 +124,7 @@ class Monk(Character):
 
     def special_ability(self) -> str:
         return "Flurry of Blows: Attack multiple times with precision!"
+
 
 class Paladin(Character):
     def __init__(self, name: str, stats: dict = None):
