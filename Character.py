@@ -73,5 +73,107 @@ class Barbarian(Character):
     Inherits from the abstract Character base class.
     """
 
+    def __init__(self, name: str, stats: dict = None):
+        default_stats = {"STR": 15, "DEX": 12, "CON": 14, "INT": 8, "WIS": 10, "CHA": 10}
+        super().__init__(name, "Barbarian", stats if stats else default_stats)
+
     def special_ability(self) -> str:
         return "Rage: Unleash devastating attacks with increased strength!"
+
+
+class Bard(Character):
+    def __init__(self, name: str, stats: dict = None):
+        default_stats = {"STR": 10, "DEX": 14, "CON": 12, "INT": 12, "WIS": 10, "CHA": 15}
+        super().__init__(name, "Bard", stats if stats else default_stats)
+
+    def special_ability(self) -> str:
+        return "Inspiration: Uplift allies with captivating performances!"
+
+
+class Cleric(Character):
+    def __init__(self, name: str, stats: dict = None):
+        default_stats = {"STR": 12, "DEX": 10, "CON": 14, "INT": 10, "WIS": 15, "CHA": 12}
+        super().__init__(name, "Cleric", stats if stats else default_stats)
+
+    def special_ability(self) -> str:
+        return "Divine Healing: Restore health through divine powers!"
+
+
+class Druid(Character):
+    def __init__(self, name: str, stats: dict = None):
+        default_stats = {"STR": 10, "DEX": 12, "CON": 12, "INT": 12, "WIS": 15, "CHA": 10}
+        super().__init__(name, "Druid", stats if stats else default_stats)
+
+    def special_ability(self) -> str:
+        return "Wild Shape: Transform into animals for versatility in combat!"
+
+
+class Fighter(Character):
+    def __init__(self, name: str, stats: dict = None):
+        default_stats = {"STR": 15, "DEX": 12, "CON": 14, "INT": 10, "WIS": 10, "CHA": 10}
+        super().__init__(name, "Fighter", stats if stats else default_stats)
+
+    def special_ability(self) -> str:
+        return "Second Wind: Recover quickly from injuries!"
+
+
+class Monk(Character):
+    def __init__(self, name: str, stats: dict = None):
+        default_stats = {"STR": 12, "DEX": 15, "CON": 12, "INT": 10, "WIS": 14, "CHA": 10}
+        super().__init__(name, "Monk", stats if stats else default_stats)
+
+    def special_ability(self) -> str:
+        return "Flurry of Blows: Attack multiple times with precision!"
+
+class Paladin(Character):
+    def __init__(self, name: str, stats: dict = None):
+        default_stats = {"STR": 14, "DEX": 10, "CON": 14, "INT": 10, "WIS": 12, "CHA": 15}
+        super().__init__(name, "Paladin", stats if stats else default_stats)
+
+    def special_ability(self) -> str:
+        return "Divine Smite: Channel divine energy to deal massive damage!"
+
+
+class Ranger(Character):
+    def __init__(self, name: str, stats: dict = None):
+        default_stats = {"STR": 12, "DEX": 14, "CON": 12, "INT": 10, "WIS": 14, "CHA": 10}
+        super().__init__(name, "Ranger", stats if stats else default_stats)
+
+    def special_ability(self) -> str:
+        return "Hunter's Mark: Track and deal extra damage to prey!"
+
+
+class Rogue(Character):
+    def __init__(self, name: str, stats: dict = None):
+        default_stats = {"STR": 10, "DEX": 15, "CON": 12, "INT": 12, "WIS": 10, "CHA": 14}
+        super().__init__(name, "Rogue", stats if stats else default_stats)
+
+    def special_ability(self) -> str:
+        return "Sneak Attack: Exploit weaknesses to strike critical blows!"
+
+
+class Sorcerer(Character):
+    def __init__(self, name: str, stats: dict = None):
+        default_stats = {"STR": 10, "DEX": 12, "CON": 14, "INT": 10, "WIS": 12, "CHA": 15}
+        super().__init__(name, "Sorcerer", stats if stats else default_stats)
+
+    def special_ability(self) -> str:
+        return "Spellcasting: Cast powerful spells fueled by innate magic!"
+
+
+class Warlock(Character):
+    def __init__(self, name: str, stats: dict = None):
+        default_stats = {"STR": 10, "DEX": 12, "CON": 12, "INT": 14, "WIS": 10, "CHA": 15}
+        super().__init__(name, "Warlock", stats if stats else default_stats)
+
+    def special_ability(self) -> str:
+        return "Eldritch Blast: Unleash arcane power granted by your patron!"
+
+
+class Wizard(Character):
+    def __init__(self, name: str, stats: dict = None):
+        default_stats = {"STR": 8, "DEX": 12, "CON": 10, "INT": 15, "WIS": 14, "CHA": 10}
+        super().__init__(name, "Wizard", stats if stats else default_stats)
+
+    def special_ability(self) -> str:
+        return "Arcane Mastery: Harness deep knowledge to control magic!"

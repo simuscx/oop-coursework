@@ -1,4 +1,4 @@
-from Character import Character, Barbarian
+from Character import Character, Barbarian, Bard, Cleric, Druid, Fighter, Monk, Paladin, Ranger, Rogue, Sorcerer, Warlock, Wizard
 
 
 class CharacterBuilder:
