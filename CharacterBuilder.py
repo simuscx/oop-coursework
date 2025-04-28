@@ -30,41 +30,26 @@ class CharacterBuilder:
         :param str char_class: The class of the character (e.g., Barbarian).
         :return CharacterBuilder: Returns the builder for chaining.
         """
-        if char_class == "Barbarian":
-            self.character = Barbarian(name="Unnamed", stats={})
+        char_class_map = {
+            "Barbarian": Barbarian,
+            "Bard": Bard,
+            "Cleric": Cleric,
+            "Druid": Druid,
+            "Fighter": Fighter,
+            "Monk": Monk,
+            "Paladin": Paladin,
+            "Ranger": Ranger,
+            "Rogue": Rogue,
+            "Sorcerer": Sorcerer,
+            "Warlock": Warlock,
+            "Wizard": Wizard,
+        }
 
-        if char_class == "Bard":
-            self.character = Bard(name="Unnamed", stats={})
+        if char_class in char_class_map:
+            self.character = char_class_map[char_class](name="Unnamed", stats={})
 
-        if char_class == "Cleric":
-            self.character = Cleric(name="Unnamed", stats={})
-
-        if char_class == "Druid":
-            self.character = Druid(name="Unnamed", stats={})
-
-        if char_class == "Fighter":
-            self.character = Fighter(name="Unnamed", stats={})
-
-        if char_class == "Monk":
-            self.character = Monk(name="Unnamed", stats={})
-
-        if char_class == "Paladin":
-            self.character = Paladin(name="Unnamed", stats={})
-
-        if char_class == "Ranger":
-            self.character = Ranger(name="Unnamed", stats={})
-
-        if char_class == "Rogue":
-            self.character = Rogue(name="Unnamed", stats={})
-
-        if char_class == "Sorcerer":
-            self.character = Sorcerer(name="Unnamed", stats={})
-
-        if char_class == "Warlock":
-            self.character = Warlock(name="Unnamed", stats={})
-
-        if char_class == "Wizard":
-            self.character = Wizard(name="Unnamed", stats={})
+        if char_class not in char_class_map:
+            raise ValueError(f"Unsupported character class: {char_class}")
 
         return self
 
