@@ -54,23 +54,19 @@ class Character(abc.ABC):   # Abstraction - abstract class Character
 
         :param file_name: file name to write to
         """
-        # nebereikalingas, kai passinamas file_name
-        # if not textfile.writable():
-        #     raise ValueError("Provided file must be writable")
 
         data = {
             "name": self._name,
             "character_class": self._character_class,
             "stats": self._stats,
-            "inventory": [item.name for item in self._inventory]    # galetu but methodas, self.get_inventory()
+            "inventory": [item.name for item in self._inventory]    # could be a method, self.get_inventory()
         }
-
         with open(file_name, "w") as file:
-            json.dump(data, file, indent=2)     # pridejau indent=2 kad graziau jsonai atrodtu
+            json.dump(data, file, indent=2)     # indent=2 so that the json looks better
 
     def __str__(self) -> str:
         return (f"{self._name} the {self._character_class} - Stats: {self._stats}. "
-                f"Inventory: {', '.join([item.name for item in self._inventory])}") # arba self.get_inventory()
+                f"Inventory: {', '.join([item.name for item in self._inventory])}") # or self.get_inventory()
 
 
 class Barbarian(Character):
@@ -166,7 +162,7 @@ class Sorcerer(Character):
         super().__init__(name, "Sorcerer", stats if stats else default_stats)
 
     def special_ability(self) -> str:
-        return "Spellcasting: Cast powerful spells fueled by innate magic!"
+        return "Spell-casting: Cast powerful spells fueled by innate magic!"
 
 
 class Warlock(Character):

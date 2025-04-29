@@ -1,7 +1,7 @@
 from __future__ import annotations
 # future importas kad galetum typintint normaliai ^
 
-# TODO: o sitaip importai tiesiog geriau atrodo, gali ir po kelis i eilute
+# TODO: imports look better like this, possible even a few in one line
 from Character import (
     Character,
     Barbarian,

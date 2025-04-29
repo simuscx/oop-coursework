@@ -3,10 +3,10 @@ class Item:
         """
         Initialize an Item.
 
-        # TODO: skirtingas stilius docstringu, pries tai naudoji
+        # TODO: make same style docstrings
         :param name: str - The name of the item.
 
-        # TODO: dabar naudoji:
+        # TODO: currently used
         Args: name(Str)
 
         # TODO: choose one style and stick to it
@@ -50,5 +50,5 @@ class Item:
             bool: True if the item's weight is less than or equal to 2, False otherwise.
         """
         return self.weight <= 2
-        # TODO: consider random skaicius naudot kaip constantas failo virsuj, kad butu lengva keist poto, for example
-        #  LIGHTWEIGHT_THRESHOLD = 2 / VALUABLE_THRESHOLD = 100 ir tada su jais lygint
+        # TODO: consider random numbers used at the top of the file as random constants for easier change, for example
+        #  LIGHTWEIGHT_THRESHOLD = 2 / VALUABLE_THRESHOLD = 100 and then measure by that

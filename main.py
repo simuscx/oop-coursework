@@ -19,7 +19,7 @@ hero = (
     .set_name("Grog")
     .set_class("Barbarian")
     .set_stats({"STR": 99, "DEX": 1, "CON": 10})
-    # TODO: gal reiktu pridet kad jei nevisi stats papasinti, reiktu defaultus paimt
+    # TODO: if not all stats passed, implement defaults
     .build()
     # TODO: .set_inventory([sword])
 )
