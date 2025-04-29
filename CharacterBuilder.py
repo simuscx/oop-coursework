@@ -37,8 +37,8 @@ class CharacterBuilder:
         :param str name: The name of the character.
         :return CharacterBuilder: Returns the builder for chaining.
         """
-        if self.character:
-            self.character._name = name
+        self.name=name
+
         return self
 
     def set_class(self, char_class: str) -> CharacterBuilder:
@@ -64,7 +64,7 @@ class CharacterBuilder:
         }
 
         if char_class in char_class_map:
-            self.character = char_class_map[char_class](name="Unnamed", stats={})
+            self.character = char_class_map[char_class](name=self.name or "Unnamed", stats={})
 
         if char_class not in char_class_map:
             raise ValueError(f"Unsupported character class: {char_class}")
@@ -79,7 +79,7 @@ class CharacterBuilder:
         :return CharacterBuilder: Returns the builder for chaining.
         """
         if self.character:
-            self.character._stats = stats
+            self.character._stats.update(stats)
         return self
 
     def build(self) -> Character:

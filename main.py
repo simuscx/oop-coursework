@@ -1,25 +1,18 @@
 from Item import Item
 from Character import Barbarian, Bard
+from CharacterBuilder import CharacterBuilder
 
 # Create items
 sword = Item("Sword", "A sharp blade for battle", 150)
 lyre = Item("Lyre", "A musical instrument for inspiring allies", 100)
 
-# Create characters
-# hero = Barbarian("Grog")
-# hero.add_item_to_inventory(sword)
-
-# TODO: cleanup imports
-from CharacterBuilder import CharacterBuilder
-
 # Builder design pattern usage
 builder = CharacterBuilder()
 hero = (
     builder
-    .set_name("Grog")
-    .set_class("Barbarian")
-    .set_stats({"STR": 99, "DEX": 1, "CON": 10})
-    # TODO: if not all stats passed, implement defaults
+    .set_name("m1000")
+    .set_class("Wizard")
+    .set_stats({"STR": 99, "DEX": 99, "CON": 99, "CHA": 99, "INT": 99, "WIS": 99})
     .build()
     # TODO: .set_inventory([sword])
 )

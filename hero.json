@@ -1,10 +1,13 @@
 {
-  "name": "Unnamed",
-  "character_class": "Barbarian",
+  "name": "m1000",
+  "character_class": "Wizard",
   "stats": {
     "STR": 99,
-    "DEX": 1,
-    "CON": 10
+    "DEX": 99,
+    "CON": 99,
+    "INT": 99,
+    "WIS": 99,
+    "CHA": 99
   },
   "inventory": [
     "Sword"
