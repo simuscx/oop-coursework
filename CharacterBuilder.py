@@ -1,5 +1,4 @@
 from __future__ import annotations
-# TODO: imports look better like this, possible even a few in one line
 from Character import (
     Character, Barbarian, Bard,
     Cleric, Druid, Fighter,
@@ -17,6 +16,7 @@ class CharacterBuilder:
         """
         Initializes the builder with an empty Character object.
         """
+        self.character_inventory = None
         self.character = None
         self.name = None
 
@@ -76,14 +76,11 @@ class CharacterBuilder:
 
         return self
 
-    def set_inventory(self, inventory: str) -> CharacterBuilder:
-        """
-        Sets the character's inventory
+    def set_inventory(self, items: list) -> CharacterBuilder:
+        if self.character:
+            self.character._inventory = items
 
-        :param str inventory: A string containing character inventory items (e.g. Battle Axe)
-        :return CharacterBuilder: Returns the builder for chaining.
-        """
-        pass
+        return self
 
     def build(self) -> Character:
         """
