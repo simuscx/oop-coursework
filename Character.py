@@ -210,17 +210,26 @@ class CharacterSaver:
         except Exception as e:
             print(f"Error writing to {output_file}: {e}")
 
-        print(json.dumps(combined_data, indent=2))
-
     @staticmethod
     def load_characters(json_file):
+        from CharacterBuilder import CharacterBuilder
+        characters: list[Character] = []
         try:
             with open(json_file, "r") as file:
                 data = json.load(file)
-                print("\nNeatly Formatted Character Data:\n")
-                print(json.dumps(data, indent=2))
+                for char_data in data:
+                    builder = CharacterBuilder()
+                    builder.set_name(char_data.get('name', 'Unnamed'))
+                    builder.set_class(char_data.get('character_class', 'Unknown'))
+
+                    if "stats" in char_data:
+                        builder.set_stats(char_data.get("stats", {}))
+
+                    characters.append(builder.build())
+
         except FileNotFoundError:
             print(f"Error: {json_file} not found.")
         except json.JSONDecodeError:
-            print(f"Error: Invalid JSON format in {json_file}.")
+            print(f"Error: Invalid JSON format in {json_file}")
 
+        return characters

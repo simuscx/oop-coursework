@@ -1,21 +1,10 @@
 from __future__ import annotations
-# future importas kad galetum typintint normaliai ^
-
 # TODO: imports look better like this, possible even a few in one line
 from Character import (
-    Character,
-    Barbarian,
-    Bard,
-    Cleric,
-    Druid,
-    Fighter,
-    Monk,
-    Paladin,
-    Ranger,
-    Rogue,
-    Sorcerer,
-    Warlock,
-    Wizard
+    Character, Barbarian, Bard,
+    Cleric, Druid, Fighter,
+    Monk, Paladin, Ranger,
+    Rogue, Sorcerer, Warlock, Wizard
 )
 
 

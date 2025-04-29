@@ -31,20 +31,15 @@ bard = (
 bard.add_item_to_inventory(lyre)
 
 characters = [hero, bard]
-"""
-TODO: character saver class, works ig?
-"""
+
 character_saver = CharacterSaver()
 character_saver.save_characters([hero, bard], "sunday_weekend_event.json")
 
-
-# Display details
-print(hero)
-print(bard)
-
-# Save characters to files
 hero.save_to_file(file_name="hero.json")
 bard.save_to_file(file_name="bard.json")
 
 # TODO: load characters from file
 old_characters = character_saver.load_characters("sunday_weekend_event.json")
+
+for characters in old_characters:
+    print(characters)
