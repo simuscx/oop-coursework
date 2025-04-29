@@ -1,5 +1,4 @@
 import abc
-import json
 from Item import Item
 
 
@@ -47,6 +46,14 @@ class Character(abc.ABC):   # Abstraction - abstract class Character
         """
         if item in self._inventory:
             self._inventory.remove(item)
+
+    def to_dict(self):
+        return {
+            "name": self._name,
+            "character_class": self._character_class,
+            "stats": self.stats,
+            "inventory": [item.name for item in self._inventory]
+        }
 
     def save_to_file(self, file_name: str) -> None:
         """
@@ -182,28 +189,38 @@ class Wizard(Character):
     def special_ability(self) -> str:
         return "Arcane Mastery: Harness deep knowledge to control magic!"
 
+import json
+
 class CharacterSaver:
     @staticmethod
-    def save_characters(characters, filename):
+    def save_characters(characters, output_file):
+        combined_data = []
+
+        for char in characters:
+            try:
+                data = char.to_dict()
+                combined_data.append(data)
+            except Exception as e:
+                print(f"Error processing character: {e}")
+
         try:
-            characters_data= [character.__dict__ for character in characters]
-
-            with open(filename, 'w') as file:
-                json.dump(characters_data, file, indent=2)
-
-            print(f"Characters successfully saved to {filename}")
-
+            with open(output_file, "w") as out_file:
+                json.dump(combined_data, out_file, indent=2)
+            print(f"\nCombined character data saved to {output_file}")
         except Exception as e:
-            print(f"An error occurred: {e}")
+            print(f"Error writing to {output_file}: {e}")
+
+        print(json.dumps(combined_data, indent=2))
 
     @staticmethod
-    def load_characters(filename):
+    def load_characters(json_file):
         try:
-            with open(filename, 'r') as file:
-                characters_data = json.load(file)
+            with open(json_file, "r") as file:
+                data = json.load(file)
+                print("\nNeatly Formatted Character Data:\n")
+                print(json.dumps(data, indent=2))
+        except FileNotFoundError:
+            print(f"Error: {json_file} not found.")
+        except json.JSONDecodeError:
+            print(f"Error: Invalid JSON format in {json_file}.")
 
-            return characters_data
-
-        except Exception as e:
-            print(f"An error occurred: {e}")
-            return None

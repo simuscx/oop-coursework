@@ -2,12 +2,12 @@
   "name": "m1000",
   "character_class": "Wizard",
   "stats": {
-    "STR": 99,
-    "DEX": 99,
-    "CON": 99,
+    "STR": 1,
+    "DEX": 1,
+    "CON": 1,
     "INT": 99,
-    "WIS": 99,
-    "CHA": 99
+    "WIS": 14,
+    "CHA": 10
   },
   "inventory": [
     "Sword"

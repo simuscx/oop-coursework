@@ -16,7 +16,6 @@ hero = (
     .build()
     # TODO: .set_inventory([sword])
 )
-
 # TODO: remove when .set_inventory([sword]) implemented
 hero.add_item_to_inventory(sword)
 
@@ -29,16 +28,19 @@ bard = (
     .build()
 )
 
-# bard = Bard("Scanlan")
 bard.add_item_to_inventory(lyre)
 
-# TODO: character saver class
+characters = [hero, bard]
+"""
+TODO: character saver class, works ig?
+"""
 character_saver = CharacterSaver()
 character_saver.save_characters([hero, bard], "sunday_weekend_event.json")
 
+
 # Display details
-# print(hero)
-# print(bard)
+print(hero)
+print(bard)
 
 # Save characters to files
 hero.save_to_file(file_name="hero.json")
