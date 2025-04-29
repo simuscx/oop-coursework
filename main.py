@@ -38,7 +38,6 @@ character_saver.save_characters([hero, bard], "sunday_weekend_event.json")
 hero.save_to_file(file_name="hero.json")
 bard.save_to_file(file_name="bard.json")
 
-# TODO: load characters from file
 old_characters = character_saver.load_characters("sunday_weekend_event.json")
 
 for characters in old_characters:
