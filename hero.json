@@ -1,0 +1,12 @@
+{
+  "name": "Unnamed",
+  "character_class": "Barbarian",
+  "stats": {
+    "STR": 99,
+    "DEX": 1,
+    "CON": 10
+  },
+  "inventory": [
+    "Sword"
+  ]
+}
