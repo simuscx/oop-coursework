@@ -68,9 +68,22 @@ class CharacterBuilder:
         :param dict stats: A dictionary containing character stats (e.g., STR, DEX).
         :return CharacterBuilder: Returns the builder for chaining.
         """
+        allowed_stats = {"STR", "DEX", "CON", "INT", "WIS", "CHA"}  # Define valid stats
+
         if self.character:
-            self.character.stats.update(stats)
+            filtered_stats = {key: value for key, value in stats.items() if key in allowed_stats}
+            self.character.stats.update(filtered_stats)
+
         return self
+
+    def set_inventory(self, inventory: str) -> CharacterBuilder:
+        """
+        Sets the character's inventory
+
+        :param str inventory: A string containing character inventory items (e.g. Battle Axe)
+        :return CharacterBuilder: Returns the builder for chaining.
+        """
+        pass
 
     def build(self) -> Character:
         """

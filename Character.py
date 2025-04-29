@@ -17,8 +17,22 @@ class Character(abc.ABC):   # Abstraction - abstract class Character
         self._character_class = character_class
         self.stats = stats
 
+        default_items = {
+            "Barbarian": [Item("Battle Axe", "A heavy weapon for brutal combat", 200)],
+            "Bard": [Item("Lyre", "A musical instrument for inspiring allies", 100)],
+            "Cleric": [Item("Holy Symbol", "A sacred item for divine magic", 150)],
+            "Druid": [Item("Wooden Staff", "A staff infused with nature’s energy", 120)],
+            "Fighter": [Item("Longsword", "A balanced weapon for skilled fighters", 175)],
+            "Monk": [Item("Prayer Beads", "Symbol of meditation and discipline", 80)],
+            "Paladin": [Item("Blessed Shield", "A shield blessed with divine protection", 180)],
+            "Ranger": [Item("Hunting Bow", "A reliable bow for ranged combat", 160)],
+            "Rogue": [Item("Dagger", "A quick weapon for stealth attacks", 130)],
+            "Sorcerer": [Item("Arcane Tome", "A book containing powerful spells", 200)],
+            "Warlock": [Item("Dark Amulet", "An artifact tied to a mysterious patron", 190)],
+            "Wizard": [Item("Magic Wand", "A basic wand for casting spells", 150)],
+        }
         # Encapsulation - inventory is private
-        self._inventory = []  # Composition: Inventory belongs to the character.
+        self._inventory = default_items.get(character_class, [])  # Composition: Inventory belongs to the character.
 
     @abc.abstractmethod
     def special_ability(self) -> str:

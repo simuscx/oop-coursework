@@ -1,10 +1,5 @@
-from Item import Item
 from CharacterBuilder import CharacterBuilder
 from Character import CharacterSaver
-
-# Create items
-sword = Item("Sword", "A sharp blade for battle", 150)
-lyre = Item("Lyre", "A musical instrument for inspiring allies", 100)
 
 # Builder design pattern usage
 builder = CharacterBuilder()
@@ -17,7 +12,7 @@ hero = (
     # TODO: .set_inventory([sword])
 )
 # TODO: remove when .set_inventory([sword]) implemented
-hero.add_item_to_inventory(sword)
+# hero.add_item_to_inventory(sword)
 
 
 bard = (
@@ -28,15 +23,22 @@ bard = (
     .build()
 )
 
-bard.add_item_to_inventory(lyre)
+rogue = (
+    builder
+    .set_name("pozne")
+    .set_class("Rogue")
+    .set_stats({"DEX": 99})
+    .build()
+)
 
-characters = [hero, bard]
+characters = [hero, bard, rogue]
 
 character_saver = CharacterSaver()
-character_saver.save_characters([hero, bard], "sunday_weekend_event.json")
+character_saver.save_characters([hero, bard, rogue], "sunday_weekend_event.json")
 
 hero.save_to_file(file_name="hero.json")
 bard.save_to_file(file_name="bard.json")
+rogue.save_to_file(file_name="rogue.json")
 
 old_characters = character_saver.load_characters("sunday_weekend_event.json")
 

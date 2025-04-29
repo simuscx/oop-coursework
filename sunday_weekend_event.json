@@ -11,7 +11,7 @@
       "CHA": 10
     },
     "inventory": [
-      "Sword"
+      "Magic Wand"
     ]
   },
   {
@@ -27,6 +27,21 @@
     },
     "inventory": [
       "Lyre"
+    ]
+  },
+  {
+    "name": "pozne",
+    "character_class": "Rogue",
+    "stats": {
+      "STR": 10,
+      "DEX": 99,
+      "CON": 12,
+      "INT": 12,
+      "WIS": 10,
+      "CHA": 14
+    },
+    "inventory": [
+      "Dagger"
     ]
   }
 ]
