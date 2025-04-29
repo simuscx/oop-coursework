@@ -29,6 +29,7 @@ class CharacterBuilder:
         Initializes the builder with an empty Character object.
         """
         self.character = None
+        self.name = None
 
     def set_name(self, name: str) -> CharacterBuilder:
         """
@@ -37,7 +38,7 @@ class CharacterBuilder:
         :param str name: The name of the character.
         :return CharacterBuilder: Returns the builder for chaining.
         """
-        self.name=name
+        self.name = name
 
         return self
 
@@ -79,7 +80,7 @@ class CharacterBuilder:
         :return CharacterBuilder: Returns the builder for chaining.
         """
         if self.character:
-            self.character._stats.update(stats)
+            self.character.stats.update(stats)
         return self
 
     def build(self) -> Character:

@@ -16,7 +16,7 @@ class Character(abc.ABC):   # Abstraction - abstract class Character
     def __init__(self, name: str, character_class: str, stats: dict) -> None:
         self._name = name
         self._character_class = character_class
-        self._stats = stats
+        self.stats = stats
 
         # Encapsulation - inventory is private
         self._inventory = []  # Composition: Inventory belongs to the character.
@@ -58,14 +58,14 @@ class Character(abc.ABC):   # Abstraction - abstract class Character
         data = {
             "name": self._name,
             "character_class": self._character_class,
-            "stats": self._stats,
+            "stats": self.stats,
             "inventory": [item.name for item in self._inventory]    # could be a method, self.get_inventory()
         }
         with open(file_name, "w") as file:
             json.dump(data, file, indent=2)     # indent=2 so that the json looks better
 
     def __str__(self) -> str:
-        return (f"{self._name} the {self._character_class} - Stats: {self._stats}. "
+        return (f"{self._name} the {self._character_class} - Stats: {self.stats}. "
                 f"Inventory: {', '.join([item.name for item in self._inventory])}") # or self.get_inventory()
 
 
@@ -181,3 +181,29 @@ class Wizard(Character):
 
     def special_ability(self) -> str:
         return "Arcane Mastery: Harness deep knowledge to control magic!"
+
+class CharacterSaver:
+    @staticmethod
+    def save_characters(characters, filename):
+        try:
+            characters_data= [character.__dict__ for character in characters]
+
+            with open(filename, 'w') as file:
+                json.dump(characters_data, file, indent=2)
+
+            print(f"Characters successfully saved to {filename}")
+
+        except Exception as e:
+            print(f"An error occurred: {e}")
+
+    @staticmethod
+    def load_characters(filename):
+        try:
+            with open(filename, 'r') as file:
+                characters_data = json.load(file)
+
+            return characters_data
+
+        except Exception as e:
+            print(f"An error occurred: {e}")
+            return None

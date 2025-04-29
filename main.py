@@ -1,6 +1,6 @@
 from Item import Item
-from Character import Barbarian, Bard
 from CharacterBuilder import CharacterBuilder
+from Character import CharacterSaver
 
 # Create items
 sword = Item("Sword", "A sharp blade for battle", 150)
@@ -12,7 +12,7 @@ hero = (
     builder
     .set_name("m1000")
     .set_class("Wizard")
-    .set_stats({"STR": 99, "DEX": 99, "CON": 99, "CHA": 99, "INT": 99, "WIS": 99})
+    .set_stats({"STR": 1, "DEX": 1, "CON": 1, "INT": 99})
     .build()
     # TODO: .set_inventory([sword])
 )
@@ -20,20 +20,29 @@ hero = (
 # TODO: remove when .set_inventory([sword]) implemented
 hero.add_item_to_inventory(sword)
 
-bard = Bard("Scanlan")
+
+bard = (
+    builder
+    .set_name("abcdefg")
+    .set_class("Bard")
+    .set_stats({"STR": 99})
+    .build()
+)
+
+# bard = Bard("Scanlan")
 bard.add_item_to_inventory(lyre)
 
 # TODO: character saver class
-# character_saver = CharacterSaver()
-# character_saver.save_characters([hero, bard], "sunday_weekend_event.json")
+character_saver = CharacterSaver()
+character_saver.save_characters([hero, bard], "sunday_weekend_event.json")
 
 # Display details
-print(hero)
-print(bard)
+# print(hero)
+# print(bard)
 
 # Save characters to files
 hero.save_to_file(file_name="hero.json")
 bard.save_to_file(file_name="bard.json")
 
 # TODO: load characters from file
-# old_characters = character_saver.load_characters("saturday_event.json")
+old_characters = character_saver.load_characters("sunday_weekend_event.json")
