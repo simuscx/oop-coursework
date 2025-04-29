@@ -3,7 +3,7 @@ import json
 from Item import Item
 
 
-class Character(abc.ABC):
+class Character(abc.ABC):   # Abstraction - abstract class Character
     """
     Abstract Base Class for all Character types in the DND Helper.
     Represents the core attributes and behaviors of a DND character.
@@ -17,6 +17,8 @@ class Character(abc.ABC):
         self._name = name
         self._character_class = character_class
         self._stats = stats
+
+        # Encapsulation - inventory is private
         self._inventory = []  # Composition: Inventory belongs to the character.
 
     @abc.abstractmethod
@@ -29,7 +31,7 @@ class Character(abc.ABC):
         """
         pass
 
-    def add_item_to_inventory(self, item: "Item") -> None:
+    def add_item_to_inventory(self, item: Item) -> None:
         """
         Adds an item to the character's inventory.
 
@@ -37,7 +39,7 @@ class Character(abc.ABC):
         """
         self._inventory.append(item)
 
-    def remove_item_from_inventory(self, item: "Item") -> None:
+    def remove_item_from_inventory(self, item: Item) -> None:
         """
         Removes an item from the character's inventory.
 
@@ -46,28 +48,33 @@ class Character(abc.ABC):
         if item in self._inventory:
             self._inventory.remove(item)
 
-    def save_to_file(self, textfile) -> None:
+    def save_to_file(self, file_name: str) -> None:
         """
         Saves the character's details to a given file in JSON format.
 
-        :param textfile: The file object opened in text mode to save data into.
+        :param file_name: file name to write to
         """
-        if not textfile.writable():
-            raise ValueError("Provided file must be writable")
+        # nebereikalingas, kai passinamas file_name
+        # if not textfile.writable():
+        #     raise ValueError("Provided file must be writable")
 
         data = {
             "name": self._name,
             "character_class": self._character_class,
             "stats": self._stats,
-            "inventory": [item.name for item in self._inventory]
+            "inventory": [item.name for item in self._inventory]    # galetu but methodas, self.get_inventory()
         }
-        json.dump(data, textfile)
+
+        with open(file_name, "w") as file:
+            json.dump(data, file, indent=2)     # pridejau indent=2 kad graziau jsonai atrodtu
 
     def __str__(self) -> str:
-        return f"{self._name} the {self._character_class} - Stats: {self._stats}"
+        return (f"{self._name} the {self._character_class} - Stats: {self._stats}. "
+                f"Inventory: {', '.join([item.name for item in self._inventory])}") # arba self.get_inventory()
 
 
 class Barbarian(Character):
+    # Inheritance - Barbarian class inherits from Character
     """
     Represents a Barbarian character class.
     Inherits from the abstract Character base class.
@@ -77,7 +84,7 @@ class Barbarian(Character):
         default_stats = {"STR": 15, "DEX": 12, "CON": 14, "INT": 8, "WIS": 10, "CHA": 10}
         super().__init__(name, "Barbarian", stats if stats else default_stats)
 
-    def special_ability(self) -> str:
+    def special_ability(self) -> str:           # polymorphism - new special ability for each class
         return "Rage: Unleash devastating attacks with increased strength!"
 
 

@@ -1,4 +1,22 @@
-from Character import Character, Barbarian, Bard, Cleric, Druid, Fighter, Monk, Paladin, Ranger, Rogue, Sorcerer, Warlock, Wizard
+from __future__ import annotations
+# future importas kad galetum typintint normaliai ^
+
+# TODO: o sitaip importai tiesiog geriau atrodo, gali ir po kelis i eilute
+from Character import (
+    Character,
+    Barbarian,
+    Bard,
+    Cleric,
+    Druid,
+    Fighter,
+    Monk,
+    Paladin,
+    Ranger,
+    Rogue,
+    Sorcerer,
+    Warlock,
+    Wizard
+)
 
 
 class CharacterBuilder:
@@ -12,7 +30,7 @@ class CharacterBuilder:
         """
         self.character = None
 
-    def set_name(self, name: str) -> "CharacterBuilder":
+    def set_name(self, name: str) -> CharacterBuilder:
         """
         Sets the character's name.
 
@@ -23,7 +41,7 @@ class CharacterBuilder:
             self.character._name = name
         return self
 
-    def set_class(self, char_class: str) -> "CharacterBuilder":
+    def set_class(self, char_class: str) -> CharacterBuilder:
         """
         Assigns a class type to the character by creating the relevant subclass.
 
@@ -53,7 +71,7 @@ class CharacterBuilder:
 
         return self
 
-    def set_stats(self, stats: dict) -> "CharacterBuilder":
+    def set_stats(self, stats: dict) -> CharacterBuilder:
         """
         Sets the character's stats.
 
