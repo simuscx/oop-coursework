@@ -96,4 +96,5 @@ The **DND Character Creator** streamlines the process of character creation, off
 * https://www.dndbeyond.com/
 * https://docs.python.org/
 * https://peps.python.org/pep-0008/
-* 
+* https://docs.python.org/3/library/unittest.html
+* generative AI, although only for ideas and explanations of concepts
