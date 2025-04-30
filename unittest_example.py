@@ -54,8 +54,8 @@ class MyTestCase(unittest.TestCase):
         """
         Ensure default stats remain when not explicitly set.
         """
-        random_override_value = int(18)
-        rogue_default_str = int(10)
+        random_override_value = 18
+        rogue_default_str = 10
 
         partial_hero = (
             CharacterBuilder()
