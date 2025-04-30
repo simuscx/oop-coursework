@@ -199,12 +199,14 @@ class Wizard(Character):
     def special_ability(self) -> str:
         return "Arcane Mastery: Harness deep knowledge to control magic!"
 
+
 class CharacterManager:
     """
     A utility class for managing character data in the DND Helper.
     Handles saving and loading character instances from JSON files.
     Provides methods to serialize and deserialize character objects.
     """
+
     @staticmethod
     def save_characters(characters, output_file):
         """

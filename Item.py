@@ -17,7 +17,6 @@ class Item:
         """
         return f"{self.name} Description: {self.description}\n Value: {self.value} coins\n"
 
-
     def is_valuable(self) -> bool:
         """
         Determine if the item is considered valuable.

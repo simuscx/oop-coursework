@@ -23,7 +23,6 @@ class MyTestCase(unittest.TestCase):
         )
         self.test_file = "test_character_save.json"
 
-
     def tearDown(self):
         del self.builder
         del self.manager
@@ -71,6 +70,7 @@ class MyTestCase(unittest.TestCase):
 
     def test_example1(self):
         self.assertLess(1, 2)
+
 
 if __name__ == '__main__':
     unittest.main()

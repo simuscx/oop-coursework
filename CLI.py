@@ -3,7 +3,8 @@ from CharacterBuilder import CharacterBuilder
 from Character import CharacterManager
 from Item import Item
 
-#fix pep8 for entire cli
+
+# fix pep8 for entire cli
 def build_character():
     """
 
@@ -40,7 +41,7 @@ def build_character():
         if not stat_val:
             continue
         if stat_val.isdigit() and int(stat_val) > 0:
-            stats[stat]=int(stat_val)
+            stats[stat] = int(stat_val)
         else:
             print("Invalid input! Please enter a positive whole number.")
     builder.set_stats(stats)
@@ -58,7 +59,8 @@ def build_character():
 
     return builder.build()
 
-#again, pep8
+
+# again, pep8
 def main():
     parser = argparse.ArgumentParser(description="DND CLI")
     parser.add_argument("action", choices=["build", "load"])
@@ -71,10 +73,8 @@ def main():
             char = build_character()
             characters.append(char)
 
-
             add_more = input("Create another character? (y/n): ").strip().lower()
             if add_more != 'y':
-
                 break
 
         file_name = input(f"Save characters to file ({args.file} by default): ").strip() or args.file
@@ -90,6 +90,7 @@ def main():
                 print(char)
         except FileNotFoundError:
             print(f"Error: File {args.file} not found.")
+
 
 if __name__ == "__main__":
     main()
