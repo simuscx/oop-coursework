@@ -9,7 +9,7 @@ The **DND Character Creator** is a Python-based CLI application designed to help
 Ensure Python is installed, then clone the repository and navigate to the project directory:
 ```bash
 git clone github.com/simuscx/oop-coursework
-cd DND-Character-Creator
+cd oop-coursework-main
 pip install -r requirements.txt  # If needed
 ```
 ### Run the CLI:
