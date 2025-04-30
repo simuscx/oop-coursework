@@ -94,5 +94,4 @@ def main():
 if __name__ == "__main__":
     main()
 
-# TODO : FIX, DOES NOT WORK !!!!!!
-# TODO: create several characters in one CLI, save to one file, perhaps name file too
+# TODO: make CLI not just create characters, but also read from json.
