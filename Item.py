@@ -1,5 +1,5 @@
 class Item:
-    def __init__(self, name, description, value, weight=0, rarity="Common"):
+    def __init__(self, name: object, description: object, value: object, weight: object = 0, rarity: object = "Common") -> None:
         """
         Initialize an Item.
 
