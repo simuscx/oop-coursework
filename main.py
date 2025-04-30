@@ -29,9 +29,6 @@ bard = (
 
 characters = [hero, bard]
 
-hero.save_to_file(file_name="hero.json")
-bard.save_to_file(file_name="bard.json")
-
 character_manager = CharacterManager()
 character_manager.save_characters([hero, bard], "sunday_weekend_event.json")
 
