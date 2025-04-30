@@ -21,6 +21,7 @@ class MyTestCase(unittest.TestCase):
             ])
             .build()
         )
+        self.test_file = "test_character_save.json"
 
 
     def tearDown(self):
@@ -28,6 +29,13 @@ class MyTestCase(unittest.TestCase):
         del self.manager
         del self.hero
 
+    def test_inventory_holds_items(self):
+        """
+        Verify that the character's inventory holds the expected items"
+        """
+        self.assertEqual(len(self.hero._inventory), 2)
+        self.assertEqual(self.hero._inventory[0].name, "itemname")
+        self.assertEqual(self.hero._inventory[1].value, 150)
 
     def test_save_and_load(self):
         """
@@ -44,6 +52,22 @@ class MyTestCase(unittest.TestCase):
         # self.assertEqual(self.hero, loaded_hero)
         self.assertEqual(self.hero.to_dict(), loaded_hero.to_dict())
 
+    def test_partial_stats_keep_defaults(self):
+        """
+        Ensure default stats remain when not explicitly set.
+        """
+        random_override_value = int(18)
+        rogue_default_str = int(10)
+
+        partial_hero = (
+            CharacterBuilder()
+            .set_name("roguey")
+            .set_class("Rogue")
+            .set_stats({"DEX": random_override_value})
+            .build()
+        )
+        self.assertEqual(partial_hero.stats["DEX"], random_override_value)
+        self.assertEqual(partial_hero.stats["STR"], rogue_default_str)
 
     def test_example1(self):
         self.assertLess(1, 2)
