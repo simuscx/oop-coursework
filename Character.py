@@ -81,25 +81,9 @@ class Character(abc.ABC):  # Abstraction - abstract class Character
             "inventory": [item.__dict__ for item in self._inventory]
         }
 
-    def save_to_file(self, file_name: str) -> None:
-        """
-        Saves the character's details to a given file in JSON format.
-
-        :param file_name: file name to write to
-        """
-
-        data = {
-            "name": self._name,
-            "character_class": self._character_class,
-            "stats": self.stats,
-            "inventory": [item.name for item in self._inventory]  # could be a method, self.get_inventory()
-        }
-        with open(file_name, "w") as file:
-            json.dump(data, file, indent=2)  # indent=2 so that the json looks better
-
-    def __str__(self) -> str:
-        return (f"{self._name} the {self._character_class} - Stats: {self.stats}. "
-                f"Inventory: {', '.join([item.name for item in self._inventory])}")  # or self.get_inventory()
+    def __str__(self):
+        return (f"{self._character_class} {self._name} with stats "
+                f"{self.stats}. Inventory: {[item.name for item in self._inventory]}")
 
 
 class Barbarian(Character):
