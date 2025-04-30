@@ -1,90 +1,99 @@
-# DND Character Creator (OOP Coursework)
+# DND Character Creator
 
-A Python-based CLI tool for creating, managing, and storing DND characters using a **Builder Design Pattern**. Customize stats, assign inventory items, and save/load heroes for your next adventure!
+## 1. Introduction
 
-## Features
-- **Character Creation**: Choose a class, set stats, and define inventory.
-- **Builder Pattern**: Step-by-step character construction.
-- **Save & Load**: Store characters in JSON and retrieve them later.
-- **CLI Interface**: Interactive character management.
-- **Unit Testing**: Comprehensive tests ensure reliability for character creation, saving/loading, and inventory management.
+### What is your application?
+The **DND Character Creator** is a Python-based CLI application designed to help players build, manage, and store their DND characters. Using the **Builder Design Pattern**, players can create characters with customizable stats, inventory, and class selection. The program also allows saving and loading characters via JSON for persistent gameplay.
 
-## Installation
-Ensure you have Python installed, then clone the repo and install dependencies (if any):
+### How to run the program?
+Ensure Python is installed, then clone the repository and navigate to the project directory:
 ```bash
 git clone github.com/simuscx/oop-coursework
 cd DND-Character-Creator
-pip install -r requirements.txt 
-
-## Installation
-Ensure you have Python installed, then clone the repo and install dependencies (if any):
-```bash
-git clone github.com/simuscx/oop-coursework
-cd oop-coursework-main
-pip install -r requirements.txt (recommended on venv)
+pip install -r requirements.txt  # If needed
 ```
-# Usage
-
-Run the main CLI tool:
+### Run the CLI:
 ```
 python CLI.py
 ```
-You'll be prompted to **create or load** characters, set their attributes and manage inventory.
-## File breakdown
-* main.py – Example implementation of character creation and saving.
-* CLI.py – Interactive interface for building/loading characters.
-* Character.py – Base character class definitions, CharacterManager class which is responsible for loading and saving characters into .json files.
-* Item.py – Defines game items.
-* unittest_example.py – Implements unit tests for critical game mechanics
+### How to use the program?
+Upon running the CLI, users are prompted to either build a new character or load existing ones from a saved JSON file (for longer campaigns), The creating process involves:
+* Choosing a name.
+* Selecting a class from available options.
+* Setting character stats (or using defaults).
+* Adding custom inventory items (optional).
+* Saving the character for future use.
 
-## Unit Testing
+## 2. Body/Analysis
 
-This project includes unit tests to verify correct behavior of character creation, inventory management, and file storage.
+### How does the program implement functional requirements? 
+#### Use of Git and GitHub:
+The entire project, including all source files and the Markdown-formatted README, is stored in a GitHub repository (hi :)), ensuring version control and accessibility
 
-Run the tests using:
+#### Implementation of OOP principles:
+This project follows four key object-oriented programming (OOP) pillars:
+* Polymorphism: The **Character** class defines an abstract method **special_ability()** that is implemented differently across subclasses.
+```
+@abc.abstractmethod
+def special_ability(self) -> str:
+    pass
+
+class Barbarian(Character):
+    def special_ability(self) -> str:
+        return "Rage: Unleash devastating attacks with increased strength!"
+```
+* Abstraction: the **Character** class serves as an abstract base class, encapsulating common attributes while requiring subclasses to define specific behavior.
+* Inheritance: Character subclasses (**Barbarian, Wizard, Rogue**, etc.) inherit from the *Character* base class, reusing existing functionality.
+* Encapsulation: the **_inventory** attribute is private, ensuring that character inventories are properly managed without external modification.
+
+#### Design Pattern: Builder:
+The project uses the **Builder Design Pattern** to construct characters in a structured manner:
+```
+builder = CharacterBuilder()
+hero = builder.set_name("Character1").set_class("Monk").set_stats({"STR": 1}).build()
+```
+This pattern allows for **step-by-step object creation**, ensuring a consistent structure across different character types.
+
+#### Composition & Aggregation:
+* **Composition:** the **Character** class includes an **_inventory** list of **Item** objects, ensuring that items belong to characters.
+* **Aggregation:** the **CharacterManager** class aggregates multiple characters, managing their storage and retrieval.
+
+### Reading & Writing to Files:
+Characters are saved and loaded using **JSON file storage:**
+```
+CharacterManager.save_characters([hero, bard], "characters.json")
+loaded_characters = CharacterManager.load_characters("characters.json")
+```
+This ensures persistence across game sessions, for further context look into **load_character** and **save_character** in the class of **CharacterManager** (Character.py)
+
+### Unit Testing
+Core functionality is tested using **unittest**, covering:
+* **Inventory Management:** Ensures items are correctly stored and retrieved
+* **Character Persistence:** Verifies saving/loading maintains data integrity.
+* **Default Stats Handling:** Confirms missing stats are assigned default values
+* **Error Handling:** Tests loading from nonexistent files.
 ```
 python -m unittest unittest_example.py
 ```
-Example unit tests include:
-* **Inventory Management** – Ensures items are correctly stored and retrieved.
-* **Character Persistence** – Tests saving/loading characters without data loss.
-* **Default Stats Handling** – Confirms character stats retain defaults if not explicitly set.
-* **Error handling** – Tests loading from nonexistent files.
+## 3. Results and Summary
 
-## Example Character Creation
-```
-python CLI.py
-Do you want to [load] existing characters or [build] new ones? build
-Character name: Character1
-Character class (Valid classes: Sorcerer, Monk, Rogue, Bard, Barbarian, Paladin, Wizard, Ranger, Fighter, Warlock, Druid, Cleric): Monk
-STR (enter to skip): 1
-DEX (enter to skip): 1
-CON (enter to skip): 1
-INT (enter to skip): 1
-WIS (enter to skip): 1
-CHA (enter to skip): 1
-Add item(s)? (y/[d]efault/n): y
-Item name: Item1
-Description: ItemDesc1
-Value: 1
-Do you want to create more items? N
-Create another character? (y/n): N
-Save to file (default: characters.json): TestCharacter1
+### Results
+* Successfully implemented a **DND character creation system** with flexible customization
+* Ensured **persistent storage** of characters using JSON.
+* Applied **OOP principles** and the **Builder pattern** to maintain structured code.
+* Covered essential features with **unit testing** to ensure program reliability.
 
-Character data saved to TestCharacter1.json
+### Conclusions
+The **DND Character Creator** streamlines the process of character creation, offering structured customization while leveraging Python's OOP capabilities. It's **test-driven approach** ensures correctness, making it a useful tool for both players and dungeon masters.
 
-Saved 1 character(s) to TestCharacter1.json
-```
-## Example Character Loading
-```
-python CLI.py
-Do you want to [load] existing characters or [build] new ones? load
-Enter file to load characters from (e.g. hero.json): TestCharacter1 (both work, TestCharacter1
-and TestCharacter1.json)
+### Future Extensions
+* **Combat System**: Add attack/damage mechanics and HP tracking. (HP is setup, but no combat system therefore no need to track it)
+* **Multiplayer Integration:** Allow players to share characters via an API.
+* **GUI Version:** Expand beyond CLI to a graphical interface.
 
-Loaded 1 character(s):
+## 4. Optional: Resources & References
 
-1. Monk Character1 with stats {'STR': 1, 'DEX': 1, 'CON': 1, 'INT': 1, 'WIS': 1, 'CHA': 1}. Inventory: ['Item1']
-```
-# Contributing?
-I made this project for an university coursework, but if you want to expand the project – fork the repo, make improvements and submit a PR! :)
+* https://www.dndbeyond.com/
+* https://docs.python.org/
+* https://peps.python.org/pep-0008/
+* 
