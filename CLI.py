@@ -11,10 +11,18 @@ def build_character():
     name = input("Character name: ")
 
     valid_classes = {
-        "Barbarian", "Bard","Cleric",
-        "Druid", "Fighter", "Monk",
-        "Paladin", "Ranger", "Rogue",
-        "Sorcerer", "Warlock", "Wizard"
+        "Barbarian",
+        "Bard",
+        "Cleric",
+        "Druid",
+        "Fighter",
+        "Monk",
+        "Paladin",
+        "Ranger",
+        "Rogue",
+        "Sorcerer",
+        "Warlock",
+        "Wizard"
     }
 
     while True:
@@ -61,13 +69,18 @@ def main():
         characters = []
         while True:
             char = build_character()
-            CharacterManager.save_characters([char], args.file)
+            characters.append(char)
+
 
             add_more = input("Create another character? (y/n): ").strip().lower()
             if add_more != 'y':
+
                 break
 
         file_name = input(f"Save characters to file ({args.file} by default): ").strip() or args.file
+        if not file_name.endswith(".json"):
+            file_name += ".json"
+
         CharacterManager.save_characters(characters, file_name)
 
     elif args.action == "load":
@@ -81,4 +94,5 @@ def main():
 if __name__ == "__main__":
     main()
 
+# TODO : FIX, DOES NOT WORK !!!!!!
 # TODO: create several characters in one CLI, save to one file, perhaps name file too
