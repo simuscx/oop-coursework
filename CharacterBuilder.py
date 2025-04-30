@@ -88,5 +88,4 @@ class CharacterBuilder:
 
         :return Character: The constructed Character object.
         """
-        # TODO: for future: PEP8: no newline at end of file
         return self.character
