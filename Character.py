@@ -61,12 +61,22 @@ class Character(abc.ABC):   # Abstraction - abstract class Character
         if item in self._inventory:
             self._inventory.remove(item)
 
-    def to_dict(self):
+    def to_dict(self) -> dict:
+        """
+        Converts the character object into a dictionary representation
+
+        return: a dictionary containing the character's attributes
+        param: name (str): The character's name
+        param: character_class (str): The class of the character (e.g., Barbarian)
+        param: stats (dict): A dictionary of the character's stats (e.g. STR)
+        param: inventory (list): A list of item names representing the character's inventory.
+
+        """
         return {
             "name": self._name,
             "character_class": self._character_class,
             "stats": self.stats,
-            "inventory": [item.name for item in self._inventory]
+            "inventory": [item.__dict__ for item in self._inventory]
         }
 
     def save_to_file(self, file_name: str) -> None:
@@ -239,8 +249,12 @@ class CharacterSaver:
                     if "stats" in char_data:
                         builder.set_stats(char_data.get("stats", {}))
 
-                    characters.append(builder.build())
+                    if "inventory" in char_data:
+                        item_dicts = char_data["inventory"]
+                        items = [Item(**item_data) for item_data in item_dicts]
+                        builder.set_inventory(items)
 
+                    characters.append(builder.build())
         except FileNotFoundError:
             print(f"Error: {json_file} not found.")
         except json.JSONDecodeError:

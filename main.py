@@ -2,23 +2,16 @@ from CharacterBuilder import CharacterBuilder
 from Character import CharacterSaver
 from Item import Item
 
-# create items
-sword = Item("Sword", "A sharp blade for battle", 150)
-lyre = Item("Lyre", "A musical instrument for inspiring allies", 100)
-
 # Builder design pattern usage
 builder = CharacterBuilder()
 hero = (
     builder
     .set_name("m1000")
     .set_class("Wizard")
-    .set_stats({"STR": 1, "DEX": 1, "CON": 1, "INT": 99})
-    .set_inventory([Item("abc", "A smart stick from Hogwarts", 150)])
+    .set_stats({"STR": 99, "DEX": 99, "CON": 99, "INT": 99})
+    .set_inventory([Item("itemname", "desc", 999), Item("abc", "A smart stick from Hogwarts", 150)])
     .build()
 )
-# TODO: remove when .set_inventory([sword]) implemented
-# hero.add_item_to_inventory(sword)
-
 
 bard = (
     builder
