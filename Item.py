@@ -1,5 +1,8 @@
 class Item:
     def __init__(self, name: object, description: object, value: object, weight: object = 0, rarity: object = "Common") -> None:
+        # TODO: objects in param hinting? Why not strings and integers/floats?
+        # TODO: also if method does not return anything, -> None is not a MUST, as it is the default return type
+        # TODO: also PEP8 line too long (over 120(?) chars)
         """
         Initialize an Item.
 
@@ -33,12 +36,14 @@ class Item:
                 f"Weight: {self.weight} kg")
 
     def is_valuable(self):
+        # TODO: this could typehint that it returns bool, like is_valuable(self) -> bool:
         """
         Determine if the item is considered valuable.
 
         Returns:
             bool: True if the item's value is greater than 100, False otherwise.
         """
+        # TODO: as value is defined as object, this now is weird comparison between object and int
         return self.value > 100
 
     def is_lightweight(self):
