@@ -74,8 +74,11 @@ def prompt_mode():
 
 def main():
     parser = argparse.ArgumentParser(description="DND Character CLI")
-    parser.add_argument("--file",  default="characters.json",
-                                                help="Path to JSON file for saving/loading characters")
+    parser.add_argument(
+        "--file",
+        default="characters.json",
+        help="Path to JSON file for saving/loading characters."
+    )
     args = parser.parse_args()
 
     mode = prompt_mode()
@@ -90,22 +93,31 @@ def main():
             if add_more != 'y':
                 break
 
-        file_name = input(f"Save characters to file ({args.file} by default): ").strip() or args.file
+        file_name = input(f"Save to file (default: {args.file}): ").strip() or args.file
         if not file_name.endswith(".json"):
             file_name += ".json"
 
         CharacterManager.save_characters(characters, file_name)
+        print(f"\nSaved {len(characters)} character(s) to {file_name}")
 
     elif mode == "load":
-        try:
-            chars = CharacterManager.load_characters(args.file)
-            for char in chars:
-                print(char)
-        except FileNotFoundError:
-            print(f"Error: File {args.file} not found.")
+        file_name = input("Enter file to load characters from (e.g. hero.json): ").strip()
+        if not file_name:
+            print("No file name provided.")
+            return
 
+        if not file_name.endswith(".json"):
+            file_name += ".json"
+
+        try:
+            characters = CharacterManager.load_characters(file_name)
+        except FileNotFoundError:
+            print(f"Error: File '{file_name}' not found.")
+            return
+
+        print(f"\nLoaded {len(characters)} character(s):\n")
+        for i, char in enumerate(characters, 1):
+            print(f"{i}. {char}")
 
 if __name__ == "__main__":
     main()
-
-# TODO: make CLI not just create characters, but also read from json.
