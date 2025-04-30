@@ -3,7 +3,6 @@ class Item:
         """
         Initialize an Item.
 
-        # TODO: make same style docstrings
         :param name: str - The name of the item.
 
         # TODO: currently used
@@ -12,8 +11,8 @@ class Item:
         # TODO: choose one style and stick to it
 
         Args:
-            name (str): The name of the item.
-            description (str): A short description of the item.
+            :param name: str - The name of the item.
+            :param description: str - A short description of the item.
             value (int): The item's value in the game's currency.
             weight (int, optional): The weight of the item. Defaults to 0.
             rarity (str, optional): The rarity level of the item. Defaults to 'Common'.
