@@ -1,8 +1,10 @@
 import abc
+import json
+
 from Item import Item
 
 
-class Character(abc.ABC):   # Abstraction - abstract class Character
+class Character(abc.ABC):  # Abstraction - abstract class Character
     """
     Abstract Base Class for all Character types in the DND Helper.
     Represents the core attributes and behaviors of a DND character.
@@ -90,14 +92,14 @@ class Character(abc.ABC):   # Abstraction - abstract class Character
             "name": self._name,
             "character_class": self._character_class,
             "stats": self.stats,
-            "inventory": [item.name for item in self._inventory]    # could be a method, self.get_inventory()
+            "inventory": [item.name for item in self._inventory]  # could be a method, self.get_inventory()
         }
         with open(file_name, "w") as file:
-            json.dump(data, file, indent=2)     # indent=2 so that the json looks better
+            json.dump(data, file, indent=2)  # indent=2 so that the json looks better
 
     def __str__(self) -> str:
         return (f"{self._name} the {self._character_class} - Stats: {self.stats}. "
-                f"Inventory: {', '.join([item.name for item in self._inventory])}") # or self.get_inventory()
+                f"Inventory: {', '.join([item.name for item in self._inventory])}")  # or self.get_inventory()
 
 
 class Barbarian(Character):
@@ -111,7 +113,7 @@ class Barbarian(Character):
         default_stats = {"STR": 15, "DEX": 12, "CON": 14, "INT": 8, "WIS": 10, "CHA": 10}
         super().__init__(name, "Barbarian", stats if stats else default_stats)
 
-    def special_ability(self) -> str:           # polymorphism - new special ability for each class
+    def special_ability(self) -> str:  # polymorphism - new special ability for each class
         return "Rage: Unleash devastating attacks with increased strength!"
 
 
@@ -213,11 +215,22 @@ class Wizard(Character):
     def special_ability(self) -> str:
         return "Arcane Mastery: Harness deep knowledge to control magic!"
 
-import json
-
-class CharacterSaver:
+class CharacterManager:
+    """
+    A utility class for managing character data in the DND Helper.
+    Handles saving and loading character instances from JSON files.
+    Provides methods to serialize and deserialize character objects.
+    """
     @staticmethod
     def save_characters(characters, output_file):
+        """
+        Saves a list of characters to JSON file.
+        Iterates through the provided characters, converting them to dictionary
+        format, and writes the data to a JSON file.
+
+        :param list characters: a list of character instances to be saved
+        :param str output_file: the file path where the character data should be stored
+        """
         combined_data = []
 
         for char in characters:
@@ -230,17 +243,26 @@ class CharacterSaver:
         try:
             with open(output_file, "w") as out_file:
                 json.dump(combined_data, out_file, indent=2)
-            print(f"\nCombined character data saved to {output_file}")
+                print(f"\nCharacter data saved to {output_file}")
         except Exception as e:
             print(f"Error writing to {output_file}: {e}")
 
     @staticmethod
     def load_characters(json_file):
+        """
+        Loads characters from a JSON file and reconstructs them.
+        Reads character data from the provided JSON file and recreates Character
+        objects using the CharacterBuilder class.
+
+        :param str json_file: the file path of the JSON file containing Character data.
+        :return: A list of Character objects reconstructed from stored data.
+        """
         from CharacterBuilder import CharacterBuilder
         characters: list[Character] = []
         try:
             with open(json_file, "r") as file:
                 data = json.load(file)
+
                 for char_data in data:
                     builder = CharacterBuilder()
                     builder.set_name(char_data.get('name', 'Unnamed'))
@@ -255,6 +277,7 @@ class CharacterSaver:
                         builder.set_inventory(items)
 
                     characters.append(builder.build())
+
         except FileNotFoundError:
             print(f"Error: {json_file} not found.")
         except json.JSONDecodeError:

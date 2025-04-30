@@ -1,14 +1,13 @@
 class Item:
-    def __init__(self, name: object, description: object, value: object, weight: object = 0, rarity: object = "Common") -> None:
+    def __init__(self, name: str, description: str, value: int, weight: int = 0, rarity: str = "Common"):
         """
         Initialize an Item.
 
         :param name: str - The name of the item.
-        :param name: str - The name of the item.
         :param description: str - A short description of the item.
-        :param value: int -The item's value in the game's currency.
-        :param weight: int, optional - The weight of the item. Defaults to 0.
-        :param rarity: str, optional - The rarity level of the item. Defaults to 'Common'
+        :param value (int): The item's value in the game's currency.
+        :param weight (int, optional): The weight of the item. Defaults to 0.
+        :param rarity (str, optional): The rarity level of the item. Defaults to 'Common'.
         """
         self.name = name
         self.description = description
@@ -25,11 +24,12 @@ class Item:
                 f"Value: {self.value} coins\n"
                 f"Weight: {self.weight} kg")
 
-    def is_valuable(self):
+    def is_valuable(self) -> bool:
         """
         Determine if the item is considered valuable.
 
-        return: bool - True if the item's value is greater than 100, False otherwise.
+        Returns:
+            bool: True if the item's value is greater than 100, False otherwise.
         """
         return self.value > 100
 
@@ -37,7 +37,8 @@ class Item:
         """
         Determine if the item is lightweight.
 
-        return: bool - True if the item's weight is less than or equal to 2, False otherwise.
+        Returns:
+            bool: True if the item's weight is less than or equal to 2, False otherwise.
         """
         return self.weight <= 2
         # TODO: consider random numbers used at the top of the file as random constants for easier change, for example

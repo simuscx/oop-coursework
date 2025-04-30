@@ -1,0 +1,15 @@
+[
+  {
+    "name": "asdf",
+    "character_class": "Monk",
+    "stats": {
+      "STR": 99,
+      "DEX": 15,
+      "CON": 12,
+      "INT": 10,
+      "WIS": 14,
+      "CHA": 10
+    },
+    "inventory": []
+  }
+]
