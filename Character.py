@@ -103,7 +103,7 @@ class Character(abc.ABC):  # Abstraction - abstract class Character
 class Barbarian(Character):
     # Inheritance - Barbarian class inherits from Character
     """
-    Represents a Barbarian character class.
+    Represents a Barbarian character class. (does the same for every other class)
     Inherits from the abstract Character base class.
     """
 

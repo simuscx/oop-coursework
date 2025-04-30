@@ -90,6 +90,12 @@ class CharacterBuilder:
         return self
 
     def set_inventory(self, items: list) -> CharacterBuilder:
+        """
+        Sets the character's inventory.
+
+        :param list items: A list containing character items (e.g. Magic Wand)
+        :return CharacterBuilder: Returns the builder for chaining.
+        """
         if self.character:
             self.character._inventory = items
 

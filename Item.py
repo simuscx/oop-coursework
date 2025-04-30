@@ -23,7 +23,7 @@ class Item:
         """
         Determine if the item is considered valuable.
 
-        Returns:
-            bool: True if the item's value is greater than 100, False otherwise.
+
+        :return bool: True if the item's value is greater than 100, False otherwise.
         """
         return self.value > 100

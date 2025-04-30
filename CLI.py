@@ -5,9 +5,12 @@ from CharacterBuilder import CharacterBuilder
 from Item import Item
 
 
-# fix pep8 for entire cli
 def build_character():
-    """ """
+    """
+    Creates a new character.
+
+    :return Character: A fully equipped hero prepared for adventure.
+    """
     name = input("Character name: ")
 
     valid_classes = {
