@@ -92,7 +92,7 @@ To ensure proper formatting, the code was reformatted with **Black** and PyCharm
 The **DND Character Creator** streamlines the process of character creation, offering structured customization while leveraging Python's OOP capabilities. It's **test-driven approach** ensures correctness, making it a useful tool for both players and dungeon masters.
 
 ### Future Extensions
-* **Combat System**: Add attack/damage mechanics and HP tracking. (HP is setup, but no combat system therefore no need to track it)
+* **Combat System**: Add attack/damage mechanics and HP tracking. (HP is set up, but no combat system therefore no need to track it)
 * **Multiplayer Integration:** Allow players to share characters via an API.
 * **GUI Version:** Expand beyond CLI to a graphical interface.
 
