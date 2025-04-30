@@ -1,6 +1,7 @@
 import argparse
-from CharacterBuilder import CharacterBuilder
+
 from Character import CharacterManager
+from CharacterBuilder import CharacterBuilder
 from Item import Item
 
 
@@ -60,14 +61,26 @@ def build_character():
     return builder.build()
 
 
-# again, pep8
+def prompt_mode():
+    """
+    Ask the user to choose between loading or building characters.
+    """
+    while True:
+        mode = input("Do you want to [load] existing characters or [build] new ones? ").strip().lower()
+        if mode in {"load", "build"}:
+            return mode
+        print("Invalid choice. Type 'load' or 'build'.")
+
+
 def main():
-    parser = argparse.ArgumentParser(description="DND CLI")
-    parser.add_argument("action", choices=["build", "load"])
-    parser.add_argument("--file", default="characters.json")
+    parser = argparse.ArgumentParser(description="DND Character CLI")
+    parser.add_argument("--file",  default="characters.json",
+                                                help="Path to JSON file for saving/loading characters")
     args = parser.parse_args()
 
-    if args.action == "build":
+    mode = prompt_mode()
+
+    if mode == "build":
         characters = []
         while True:
             char = build_character()
@@ -83,7 +96,7 @@ def main():
 
         CharacterManager.save_characters(characters, file_name)
 
-    elif args.action == "load":
+    elif mode == "load":
         try:
             chars = CharacterManager.load_characters(args.file)
             for char in chars:
