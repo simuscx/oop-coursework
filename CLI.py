@@ -1,31 +1,40 @@
 import argparse
 from CharacterBuilder import CharacterBuilder
-from Character import CharacterSaver
+from Character import CharacterManager
 from Item import Item
 
-
-# TODO: PEP8: two blank lines before top-level function and class definitions
+#fix pep8 for entire cli
 def build_character():
-    # TODO: docstring
+    """
+
+    """
     name = input("Character name: ")
-    char_class = input("Character class: ")
+
+    valid_classes = {
+        "Barbarian", "Bard","Cleric",
+        "Druid", "Fighter", "Monk",
+        "Paladin", "Ranger", "Rogue",
+        "Sorcerer", "Warlock", "Wizard"
+    }
+
+    while True:
+        char_class = input(f"Character class (Valid classes: {', '.join(valid_classes)}): ").strip().capitalize()
+        if char_class in valid_classes:
+            break
+        print("Invalid class choice! Please select from the listed classes.")
+
     builder = CharacterBuilder().set_name(name).set_class(char_class)
 
     stats = {}
     for stat in ["STR", "DEX", "CON", "INT", "WIS", "CHA"]:
+        stat_val = input(f"{stat} (enter to skip): ")
 
-        # TODO: consider "enter to skip" instead of blank
-        val = input(f"{stat} (blank to skip): ")
-
-        # TODO: val naming not very clear, maybe stat_val?
-
-        # TODO: nice to have: using a regex/something to check if the input is a number, cause if char is entered,
-        #  CLI breaks same as with invalid class choice below
-
-        # TODO: maybe also nice to have: instead of showing blank to skip, show default stat if not entered
-        if val:
-            stats[stat] = int(val)
-
+        if not stat_val:
+            continue
+        if stat_val.isdigit() and int(stat_val) > 0:
+            stats[stat]=int(stat_val)
+        else:
+            print("Invalid input! Please enter a positive whole number.")
     builder.set_stats(stats)
 
     items = []
@@ -41,7 +50,7 @@ def build_character():
 
     return builder.build()
 
-
+#again, pep8
 def main():
     parser = argparse.ArgumentParser(description="DND CLI")
     parser.add_argument("action", choices=["build", "load"])
@@ -49,33 +58,25 @@ def main():
     args = parser.parse_args()
 
     if args.action == "build":
-        char = build_character()
-        CharacterSaver.save_characters([char], args.file)
-
-        # TODO: nice to have: maybe better handling when non-existent class is passed
-        #  maybe just tell the user the class does not exist and stay in CLI
-        """
-        > Character class: test
-        Traceback (most recent call last):
-          
-            main()
+        characters = []
+        while True:
             char = build_character()
-                   ^^^^^^^^^^^^^^^^^
-            builder = CharacterBuilder().set_name(name).set_class(char_class)
-            raise ValueError(f"Unsupported character class: {char_class}")
-        
-        ValueError: Unsupported character class: test
-        """
+            CharacterManager.save_characters([char], args.file)
 
-        # TODO: also lowercase wizard is not existent (should it be?)
+            add_more = input("Create another character? (y/n): ").strip().lower()
+            if add_more != 'y':
+                break
+
+        file_name = input(f"Save characters to file ({args.file} by default): ").strip() or args.file
+        CharacterManager.save_characters(characters, file_name)
 
     elif args.action == "load":
-        chars = CharacterSaver.load_characters(args.file)
-
-        # TODO: for future reference, for char in chars is more human readable than for c in chars :)
-        for c in chars:
-            print(c)
-
+        try:
+            chars = CharacterManager.load_characters(args.file)
+            for char in chars:
+                print(char)
+        except FileNotFoundError:
+            print(f"Error: File {args.file} not found.")
 
 if __name__ == "__main__":
     main()
