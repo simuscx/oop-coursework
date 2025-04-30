@@ -1,4 +1,4 @@
-# DND Character Creator
+# 🧙 DND Character Creator
 
 ## 1. Introduction
 
