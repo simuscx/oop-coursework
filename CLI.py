@@ -58,7 +58,6 @@ def build_character():
     # validate input
     expected_input = ["y", "n", "d", "default"]
     while True:
-        print(add_items)
         if add_items not in expected_input:
             print(f"Invalid input. Expected input: {expected_input}")
             continue
