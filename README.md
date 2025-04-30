@@ -75,6 +75,9 @@ Core functionality is tested using **unittest**, covering:
 ```
 python -m unittest unittest_example.py
 ```
+### Code Style
+This project is written in **Python** and follows **PEP8 style guidelines** to maintain readability and consistency.
+To ensure proper formatting, the code was reformatted with **Black** and PyCharm's built-in reformatting tools.
 ## 3. Results and Summary
 
 ### Results
@@ -87,7 +90,7 @@ python -m unittest unittest_example.py
 The **DND Character Creator** streamlines the process of character creation, offering structured customization while leveraging Python's OOP capabilities. It's **test-driven approach** ensures correctness, making it a useful tool for both players and dungeon masters.
 
 ### Future Extensions
-* **Combat System**: Add attack/damage mechanics and HP tracking. (HP is set up, but no combat system therefore no need to track it)
+* **Combat System**: Add attack/damage mechanics and HP tracking. (HP is setup, but no combat system therefore no need to track it)
 * **Multiplayer Integration:** Allow players to share characters via an API.
 * **GUI Version:** Expand beyond CLI to a graphical interface.
 
@@ -96,5 +99,4 @@ The **DND Character Creator** streamlines the process of character creation, off
 * https://www.dndbeyond.com/
 * https://docs.python.org/
 * https://peps.python.org/pep-0008/
-* https://docs.python.org/3/library/unittest.html
-* generative AI, although only for ideas and explanations of concepts
+* 
