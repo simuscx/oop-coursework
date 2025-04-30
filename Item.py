@@ -15,7 +15,9 @@ class Item:
         """
         Return a string representation of the item.
         """
-        return f"{self.name} Description: {self.description}\n Value: {self.value} coins\n"
+        return (
+            f"{self.name} Description: {self.description}\n Value: {self.value} coins\n"
+        )
 
     def is_valuable(self) -> bool:
         """

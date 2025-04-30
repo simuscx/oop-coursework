@@ -1,5 +1,6 @@
 import unittest
-
+import random
+import string
 from Character import CharacterManager
 from CharacterBuilder import CharacterBuilder
 from Item import Item
@@ -11,14 +12,12 @@ class MyTestCase(unittest.TestCase):
         self.builder = CharacterBuilder()
         self.manager = CharacterManager()
         self.hero = (
-            self.builder
-            .set_name("m1000")
+            self.builder.set_name("m1000")
             .set_class("Wizard")
             .set_stats({"STR": 99, "DEX": 99, "CON": 99, "INT": 99})
-            .set_inventory([
-                Item("itemname", "desc", 999),
-                Item("itemname2", "desc2", 150)
-            ])
+            .set_inventory(
+                [Item("itemname", "desc", 999), Item("itemname2", "desc2", 150)]
+            )
             .build()
         )
         self.test_file = "test_character_save.json"
@@ -68,9 +67,15 @@ class MyTestCase(unittest.TestCase):
         self.assertEqual(partial_hero.stats["DEX"], random_override_value)
         self.assertEqual(partial_hero.stats["STR"], rogue_default_str)
 
-    def test_example1(self):
-        self.assertLess(1, 2)
+    def test_loading_characters_off_nonexistent_file(self):
+        """
+        Ensure loading nonexistent files don't work.
+        """
+        file_name = "".join(random.choices(string.ascii_letters, k=10))
+        self.assertRaises(
+            FileNotFoundError, lambda: self.manager.load_characters(f"{file_name}.json")
+        )
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

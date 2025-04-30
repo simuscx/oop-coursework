@@ -23,18 +23,28 @@ class Character(abc.ABC):  # Abstraction - abstract class Character
             "Barbarian": [Item("Battle Axe", "A heavy weapon for brutal combat", 200)],
             "Bard": [Item("Lyre", "A musical instrument for inspiring allies", 100)],
             "Cleric": [Item("Holy Symbol", "A sacred item for divine magic", 150)],
-            "Druid": [Item("Wooden Staff", "A staff infused with nature’s energy", 120)],
-            "Fighter": [Item("Longsword", "A balanced weapon for skilled fighters", 175)],
+            "Druid": [
+                Item("Wooden Staff", "A staff infused with nature’s energy", 120)
+            ],
+            "Fighter": [
+                Item("Longsword", "A balanced weapon for skilled fighters", 175)
+            ],
             "Monk": [Item("Prayer Beads", "Symbol of meditation and discipline", 80)],
-            "Paladin": [Item("Blessed Shield", "A shield blessed with divine protection", 180)],
+            "Paladin": [
+                Item("Blessed Shield", "A shield blessed with divine protection", 180)
+            ],
             "Ranger": [Item("Hunting Bow", "A reliable bow for ranged combat", 160)],
             "Rogue": [Item("Dagger", "A quick weapon for stealth attacks", 130)],
             "Sorcerer": [Item("Arcane Tome", "A book containing powerful spells", 200)],
-            "Warlock": [Item("Dark Amulet", "An artifact tied to a mysterious patron", 190)],
+            "Warlock": [
+                Item("Dark Amulet", "An artifact tied to a mysterious patron", 190)
+            ],
             "Wizard": [Item("Magic Wand", "A basic wand for casting spells", 150)],
         }
         # Encapsulation - inventory is private
-        self._inventory = default_items.get(character_class, [])  # Composition: Inventory belongs to the character.
+        self._inventory = default_items.get(
+            character_class, []
+        )  # Composition: Inventory belongs to the character.
 
     @abc.abstractmethod
     def special_ability(self) -> str:
@@ -78,12 +88,14 @@ class Character(abc.ABC):  # Abstraction - abstract class Character
             "name": self._name,
             "character_class": self._character_class,
             "stats": self.stats,
-            "inventory": [item.__dict__ for item in self._inventory]
+            "inventory": [item.__dict__ for item in self._inventory],
         }
 
     def __str__(self):
-        return (f"{self._character_class} {self._name} with stats "
-                f"{self.stats}. Inventory: {[item.name for item in self._inventory]}")
+        return (
+            f"{self._character_class} {self._name} with stats "
+            f"{self.stats}. Inventory: {[item.name for item in self._inventory]}"
+        )
 
 
 class Barbarian(Character):
@@ -94,16 +106,32 @@ class Barbarian(Character):
     """
 
     def __init__(self, name: str, stats: dict = None):
-        default_stats = {"STR": 15, "DEX": 12, "CON": 14, "INT": 8, "WIS": 10, "CHA": 10}
+        default_stats = {
+            "STR": 15,
+            "DEX": 12,
+            "CON": 14,
+            "INT": 8,
+            "WIS": 10,
+            "CHA": 10,
+        }
         super().__init__(name, "Barbarian", stats if stats else default_stats)
 
-    def special_ability(self) -> str:  # polymorphism - new special ability for each class
+    def special_ability(
+        self,
+    ) -> str:  # polymorphism - new special ability for each class
         return "Rage: Unleash devastating attacks with increased strength!"
 
 
 class Bard(Character):
     def __init__(self, name: str, stats: dict = None):
-        default_stats = {"STR": 10, "DEX": 14, "CON": 12, "INT": 12, "WIS": 10, "CHA": 15}
+        default_stats = {
+            "STR": 10,
+            "DEX": 14,
+            "CON": 12,
+            "INT": 12,
+            "WIS": 10,
+            "CHA": 15,
+        }
         super().__init__(name, "Bard", stats if stats else default_stats)
 
     def special_ability(self) -> str:
@@ -112,7 +140,14 @@ class Bard(Character):
 
 class Cleric(Character):
     def __init__(self, name: str, stats: dict = None):
-        default_stats = {"STR": 12, "DEX": 10, "CON": 14, "INT": 10, "WIS": 15, "CHA": 12}
+        default_stats = {
+            "STR": 12,
+            "DEX": 10,
+            "CON": 14,
+            "INT": 10,
+            "WIS": 15,
+            "CHA": 12,
+        }
         super().__init__(name, "Cleric", stats if stats else default_stats)
 
     def special_ability(self) -> str:
@@ -121,7 +156,14 @@ class Cleric(Character):
 
 class Druid(Character):
     def __init__(self, name: str, stats: dict = None):
-        default_stats = {"STR": 10, "DEX": 12, "CON": 12, "INT": 12, "WIS": 15, "CHA": 10}
+        default_stats = {
+            "STR": 10,
+            "DEX": 12,
+            "CON": 12,
+            "INT": 12,
+            "WIS": 15,
+            "CHA": 10,
+        }
         super().__init__(name, "Druid", stats if stats else default_stats)
 
     def special_ability(self) -> str:
@@ -130,7 +172,14 @@ class Druid(Character):
 
 class Fighter(Character):
     def __init__(self, name: str, stats: dict = None):
-        default_stats = {"STR": 15, "DEX": 12, "CON": 14, "INT": 10, "WIS": 10, "CHA": 10}
+        default_stats = {
+            "STR": 15,
+            "DEX": 12,
+            "CON": 14,
+            "INT": 10,
+            "WIS": 10,
+            "CHA": 10,
+        }
         super().__init__(name, "Fighter", stats if stats else default_stats)
 
     def special_ability(self) -> str:
@@ -139,7 +188,14 @@ class Fighter(Character):
 
 class Monk(Character):
     def __init__(self, name: str, stats: dict = None):
-        default_stats = {"STR": 12, "DEX": 15, "CON": 12, "INT": 10, "WIS": 14, "CHA": 10}
+        default_stats = {
+            "STR": 12,
+            "DEX": 15,
+            "CON": 12,
+            "INT": 10,
+            "WIS": 14,
+            "CHA": 10,
+        }
         super().__init__(name, "Monk", stats if stats else default_stats)
 
     def special_ability(self) -> str:
@@ -148,7 +204,14 @@ class Monk(Character):
 
 class Paladin(Character):
     def __init__(self, name: str, stats: dict = None):
-        default_stats = {"STR": 14, "DEX": 10, "CON": 14, "INT": 10, "WIS": 12, "CHA": 15}
+        default_stats = {
+            "STR": 14,
+            "DEX": 10,
+            "CON": 14,
+            "INT": 10,
+            "WIS": 12,
+            "CHA": 15,
+        }
         super().__init__(name, "Paladin", stats if stats else default_stats)
 
     def special_ability(self) -> str:
@@ -157,7 +220,14 @@ class Paladin(Character):
 
 class Ranger(Character):
     def __init__(self, name: str, stats: dict = None):
-        default_stats = {"STR": 12, "DEX": 14, "CON": 12, "INT": 10, "WIS": 14, "CHA": 10}
+        default_stats = {
+            "STR": 12,
+            "DEX": 14,
+            "CON": 12,
+            "INT": 10,
+            "WIS": 14,
+            "CHA": 10,
+        }
         super().__init__(name, "Ranger", stats if stats else default_stats)
 
     def special_ability(self) -> str:
@@ -166,7 +236,14 @@ class Ranger(Character):
 
 class Rogue(Character):
     def __init__(self, name: str, stats: dict = None):
-        default_stats = {"STR": 10, "DEX": 15, "CON": 12, "INT": 12, "WIS": 10, "CHA": 14}
+        default_stats = {
+            "STR": 10,
+            "DEX": 15,
+            "CON": 12,
+            "INT": 12,
+            "WIS": 10,
+            "CHA": 14,
+        }
         super().__init__(name, "Rogue", stats if stats else default_stats)
 
     def special_ability(self) -> str:
@@ -175,7 +252,14 @@ class Rogue(Character):
 
 class Sorcerer(Character):
     def __init__(self, name: str, stats: dict = None):
-        default_stats = {"STR": 10, "DEX": 12, "CON": 14, "INT": 10, "WIS": 12, "CHA": 15}
+        default_stats = {
+            "STR": 10,
+            "DEX": 12,
+            "CON": 14,
+            "INT": 10,
+            "WIS": 12,
+            "CHA": 15,
+        }
         super().__init__(name, "Sorcerer", stats if stats else default_stats)
 
     def special_ability(self) -> str:
@@ -184,7 +268,14 @@ class Sorcerer(Character):
 
 class Warlock(Character):
     def __init__(self, name: str, stats: dict = None):
-        default_stats = {"STR": 10, "DEX": 12, "CON": 12, "INT": 14, "WIS": 10, "CHA": 15}
+        default_stats = {
+            "STR": 10,
+            "DEX": 12,
+            "CON": 12,
+            "INT": 14,
+            "WIS": 10,
+            "CHA": 15,
+        }
         super().__init__(name, "Warlock", stats if stats else default_stats)
 
     def special_ability(self) -> str:
@@ -193,7 +284,14 @@ class Warlock(Character):
 
 class Wizard(Character):
     def __init__(self, name: str, stats: dict = None):
-        default_stats = {"STR": 8, "DEX": 12, "CON": 10, "INT": 15, "WIS": 14, "CHA": 10}
+        default_stats = {
+            "STR": 8,
+            "DEX": 12,
+            "CON": 10,
+            "INT": 15,
+            "WIS": 14,
+            "CHA": 10,
+        }
         super().__init__(name, "Wizard", stats if stats else default_stats)
 
     def special_ability(self) -> str:
@@ -244,6 +342,7 @@ class CharacterManager:
         :return: A list of Character objects reconstructed from stored data.
         """
         from CharacterBuilder import CharacterBuilder
+
         characters: list[Character] = []
         try:
             with open(json_file, "r") as file:
@@ -251,8 +350,8 @@ class CharacterManager:
 
                 for char_data in data:
                     builder = CharacterBuilder()
-                    builder.set_name(char_data.get('name', 'Unnamed'))
-                    builder.set_class(char_data.get('character_class', 'Unknown'))
+                    builder.set_name(char_data.get("name", "Unnamed"))
+                    builder.set_class(char_data.get("character_class", "Unknown"))
 
                     if "stats" in char_data:
                         builder.set_stats(char_data.get("stats", {}))
@@ -265,7 +364,8 @@ class CharacterManager:
                     characters.append(builder.build())
 
         except FileNotFoundError:
-            print(f"Error: {json_file} not found.")
+            raise FileNotFoundError(f"Error: {json_file} not found.")
+
         except json.JSONDecodeError:
             print(f"Error: Invalid JSON format in {json_file}")
 

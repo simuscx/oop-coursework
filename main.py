@@ -1,31 +1,18 @@
-from CharacterBuilder import CharacterBuilder
 from Character import CharacterManager
+from CharacterBuilder import CharacterBuilder
 from Item import Item
 
 # Builder design pattern usage
 builder = CharacterBuilder()
 hero = (
-    builder
-    .set_name("m1000")
+    builder.set_name("m1000")
     .set_class("Wizard")
     .set_stats({"STR": 99, "DEX": 99, "CON": 99, "INT": 99})
-    .set_inventory([
-        Item("itemname", "desc", 999),
-        Item("itemname2", "desc2", 150)
-    ])
+    .set_inventory([Item("itemname", "desc", 999), Item("itemname2", "desc2", 150)])
     .build()
 )
 
-bard = (
-    builder
-    .set_name("abcdefg")
-    .set_class("Bard")
-    .set_stats({"STR": 99})
-    .set_inventory([
-        Item("abcdefg", "abcdefg", 50)
-    ])
-    .build()
-)
+bard = builder.set_name("abcdefg").set_class("Bard").set_stats({"STR": 99}).build()
 
 characters = [hero, bard]
 

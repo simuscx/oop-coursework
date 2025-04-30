@@ -1,9 +1,18 @@
 from __future__ import annotations
 from Character import (
-    Character, Barbarian, Bard,
-    Cleric, Druid, Fighter,
-    Monk, Paladin, Ranger,
-    Rogue, Sorcerer, Warlock, Wizard
+    Character,
+    Barbarian,
+    Bard,
+    Cleric,
+    Druid,
+    Fighter,
+    Monk,
+    Paladin,
+    Ranger,
+    Rogue,
+    Sorcerer,
+    Warlock,
+    Wizard,
 )
 
 
@@ -54,7 +63,9 @@ class CharacterBuilder:
         }
 
         if char_class in char_class_map:
-            self.character = char_class_map[char_class](name=self.name or "Unnamed", stats={})
+            self.character = char_class_map[char_class](
+                name=self.name or "Unnamed", stats={}
+            )
 
         if char_class not in char_class_map:
             raise ValueError(f"Unsupported character class: {char_class}")
@@ -71,7 +82,9 @@ class CharacterBuilder:
         allowed_stats = {"STR", "DEX", "CON", "INT", "WIS", "CHA"}  # Define valid stats
 
         if self.character:
-            filtered_stats = {key: value for key, value in stats.items() if key in allowed_stats}
+            filtered_stats = {
+                key: value for key, value in stats.items() if key in allowed_stats
+            }
             self.character.stats.update(filtered_stats)
 
         return self
