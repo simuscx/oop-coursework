@@ -1,4 +1,6 @@
 import abc
+import json
+
 from Item import Item
 
 
@@ -213,15 +215,22 @@ class Wizard(Character):
     def special_ability(self) -> str:
         return "Arcane Mastery: Harness deep knowledge to control magic!"
 
-
-# TODO: imports at the top
-import json
-
-
-# TODO: consider new file for this class & CharacterManager maybe sound better? Cause it also loads the file
-class CharacterSaver:
+class CharacterManager:
+    """
+    A utility class for managing character data in the DND Helper.
+    Handles saving and loading character instances from JSON files.
+    Provides methods to serialize and deserialize character objects.
+    """
     @staticmethod
     def save_characters(characters, output_file):
+        """
+        Saves a list of characters to JSON file.
+        Iterates through the provided characters, converting them to dictionary
+        format, and writes the data to a JSON file.
+
+        :param list characters: a list of character instances to be saved
+        :param str output_file: the file path where the character data should be stored
+        """
         combined_data = []
 
         for char in characters:
@@ -234,19 +243,20 @@ class CharacterSaver:
         try:
             with open(output_file, "w") as out_file:
                 json.dump(combined_data, out_file, indent=2)
-
-            # TODO: what if i only save single character? Is it still combined?
-            print(f"\nCombined character data saved to {output_file}")
+                print(f"\nCharacter data saved to {output_file}")
         except Exception as e:
             print(f"Error writing to {output_file}: {e}")
 
     @staticmethod
     def load_characters(json_file):
-        # TODO: ah, solving circular imports, two ways to solve this:
-        #  1. import here but it's a hacky solution
-        #  2. use pyproject to import anything from root dir
-        #   but this is very NICE TO HAVE for a project like this and not needed tbh
+        """
+        Loads characters from a JSON file and reconstructs them.
+        Reads character data from the provided JSON file and recreates Character
+        objects using the CharacterBuilder class.
 
+        :param str json_file: the file path of the JSON file containing Character data.
+        :return: A list of Character objects reconstructed from stored data.
+        """
         from CharacterBuilder import CharacterBuilder
         characters: list[Character] = []
         try:
@@ -273,5 +283,4 @@ class CharacterSaver:
         except json.JSONDecodeError:
             print(f"Error: Invalid JSON format in {json_file}")
 
-        # TODO: for future: PEP8: no newline at end of file
         return characters
