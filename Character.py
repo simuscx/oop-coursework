@@ -119,7 +119,7 @@ class Barbarian(Character):
         super().__init__(name, "Barbarian", stats if stats else default_stats, health=150)
 
     def special_ability(
-        self,
+            self,
     ) -> str:  # polymorphism - new special ability for each class
         return "Rage: Unleash devastating attacks with increased strength!"
 
@@ -134,7 +134,7 @@ class Bard(Character):
             "WIS": 10,
             "CHA": 15,
         }
-        super().__init__(name, "Bard", stats if stats else default_stats, health = 100)
+        super().__init__(name, "Bard", stats if stats else default_stats, health=100)
 
     def special_ability(self) -> str:
         return "Inspiration: Uplift allies with captivating performances!"
@@ -150,7 +150,7 @@ class Cleric(Character):
             "WIS": 15,
             "CHA": 12,
         }
-        super().__init__(name, "Cleric", stats if stats else default_stats, health = 120)
+        super().__init__(name, "Cleric", stats if stats else default_stats, health=120)
 
     def special_ability(self) -> str:
         return "Divine Healing: Restore health through divine powers!"
@@ -166,7 +166,7 @@ class Druid(Character):
             "WIS": 15,
             "CHA": 10,
         }
-        super().__init__(name, "Druid", stats if stats else default_stats, health = 110)
+        super().__init__(name, "Druid", stats if stats else default_stats, health=110)
 
     def special_ability(self) -> str:
         return "Wild Shape: Transform into animals for versatility in combat!"
@@ -182,7 +182,7 @@ class Fighter(Character):
             "WIS": 10,
             "CHA": 10,
         }
-        super().__init__(name, "Fighter", stats if stats else default_stats, health = 130)
+        super().__init__(name, "Fighter", stats if stats else default_stats, health=130)
 
     def special_ability(self) -> str:
         return "Second Wind: Recover quickly from injuries!"
@@ -198,7 +198,7 @@ class Monk(Character):
             "WIS": 14,
             "CHA": 10,
         }
-        super().__init__(name, "Monk", stats if stats else default_stats, health = 115)
+        super().__init__(name, "Monk", stats if stats else default_stats, health=115)
 
     def special_ability(self) -> str:
         return "Flurry of Blows: Attack multiple times with precision!"
@@ -214,7 +214,7 @@ class Paladin(Character):
             "WIS": 12,
             "CHA": 15,
         }
-        super().__init__(name, "Paladin", stats if stats else default_stats, health = 140)
+        super().__init__(name, "Paladin", stats if stats else default_stats, health=140)
 
     def special_ability(self) -> str:
         return "Divine Smite: Channel divine energy to deal massive damage!"
@@ -230,7 +230,7 @@ class Ranger(Character):
             "WIS": 14,
             "CHA": 10,
         }
-        super().__init__(name, "Ranger", stats if stats else default_stats, health = 120)
+        super().__init__(name, "Ranger", stats if stats else default_stats, health=120)
 
     def special_ability(self) -> str:
         return "Hunter's Mark: Track and deal extra damage to prey!"
@@ -246,7 +246,7 @@ class Rogue(Character):
             "WIS": 10,
             "CHA": 14,
         }
-        super().__init__(name, "Rogue", stats if stats else default_stats, health = 105)
+        super().__init__(name, "Rogue", stats if stats else default_stats, health=105)
 
     def special_ability(self) -> str:
         return "Sneak Attack: Exploit weaknesses to strike critical blows!"
@@ -262,7 +262,7 @@ class Sorcerer(Character):
             "WIS": 12,
             "CHA": 15,
         }
-        super().__init__(name, "Sorcerer", stats if stats else default_stats, health = 90)
+        super().__init__(name, "Sorcerer", stats if stats else default_stats, health=90)
 
     def special_ability(self) -> str:
         return "Spell-casting: Cast powerful spells fueled by innate magic!"
@@ -278,7 +278,7 @@ class Warlock(Character):
             "WIS": 10,
             "CHA": 15,
         }
-        super().__init__(name, "Warlock", stats if stats else default_stats, health = 95)
+        super().__init__(name, "Warlock", stats if stats else default_stats, health=95)
 
     def special_ability(self) -> str:
         return "Eldritch Blast: Unleash arcane power granted by your patron!"
@@ -294,7 +294,7 @@ class Wizard(Character):
             "WIS": 14,
             "CHA": 10,
         }
-        super().__init__(name, "Wizard", stats if stats else default_stats, health = 80)
+        super().__init__(name, "Wizard", stats if stats else default_stats, health=80)
 
     def special_ability(self) -> str:
         return "Arcane Mastery: Harness deep knowledge to control magic!"

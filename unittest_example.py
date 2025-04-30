@@ -1,6 +1,7 @@
-import unittest
 import random
 import string
+import unittest
+
 from Character import CharacterManager
 from CharacterBuilder import CharacterBuilder
 from Item import Item

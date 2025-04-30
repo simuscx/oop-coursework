@@ -8,7 +8,9 @@ hero = (
     builder.set_name("m1000")
     .set_class("Wizard")
     .set_stats({"STR": 99, "DEX": 99, "CON": 99, "INT": 99})
-    .set_inventory([Item("itemname", "desc", 999), Item("itemname2", "desc2", 150)])
+    .set_inventory([Item("itemname", "desc", 999),
+                    Item("itemname2", "desc2", 150)]
+                   )
     .build()
 )
 
