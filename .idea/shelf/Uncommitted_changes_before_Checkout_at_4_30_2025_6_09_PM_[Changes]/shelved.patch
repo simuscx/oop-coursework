@@ -1,0 +1,59 @@
+Index: CLI.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import argparse\r\nfrom CharacterBuilder import CharacterBuilder\r\nfrom Character import CharacterManager\r\nfrom Item import Item\r\n\r\n#fix pep8 for entire cli\r\ndef build_character():\r\n    \"\"\"\r\n\r\n    \"\"\"\r\n    name = input(\"Character name: \")\r\n\r\n    valid_classes = {\r\n        \"Barbarian\", \"Bard\",\"Cleric\",\r\n        \"Druid\", \"Fighter\", \"Monk\",\r\n        \"Paladin\", \"Ranger\", \"Rogue\",\r\n        \"Sorcerer\", \"Warlock\", \"Wizard\"\r\n    }\r\n\r\n    while True:\r\n        char_class = input(f\"Character class (Valid classes: {', '.join(valid_classes)}): \").strip().capitalize()\r\n        if char_class in valid_classes:\r\n            break\r\n        print(\"Invalid class choice! Please select from the listed classes.\")\r\n\r\n    builder = CharacterBuilder().set_name(name).set_class(char_class)\r\n\r\n    stats = {}\r\n    for stat in [\"STR\", \"DEX\", \"CON\", \"INT\", \"WIS\", \"CHA\"]:\r\n        stat_val = input(f\"{stat} (enter to skip): \")\r\n\r\n        if not stat_val:\r\n            continue\r\n        if stat_val.isdigit() and int(stat_val) > 0:\r\n            stats[stat]=int(stat_val)\r\n        else:\r\n            print(\"Invalid input! Please enter a positive whole number.\")\r\n    builder.set_stats(stats)\r\n\r\n    items = []\r\n    while True:\r\n        add = input(\"Add item? (y/n): \").strip().lower()\r\n        if add != 'y':\r\n            break\r\n        name = input(\"Item name: \")\r\n        desc = input(\"Description: \")\r\n        value = int(input(\"Value: \"))\r\n        items.append(Item(name, desc, value))\r\n    builder.set_inventory(items)\r\n\r\n    return builder.build()\r\n\r\n#again, pep8\r\ndef main():\r\n    parser = argparse.ArgumentParser(description=\"DND CLI\")\r\n    parser.add_argument(\"action\", choices=[\"build\", \"load\"])\r\n    parser.add_argument(\"--file\", default=\"characters.json\")\r\n    args = parser.parse_args()\r\n\r\n    if args.action == \"build\":\r\n        characters = []\r\n        while True:\r\n            char = build_character()\r\n            CharacterManager.save_characters([char], args.file)\r\n\r\n            add_more = input(\"Create another character? (y/n): \").strip().lower()\r\n            if add_more != 'y':\r\n                break\r\n\r\n        file_name = input(f\"Save characters to file ({args.file} by default): \").strip() or args.file\r\n        CharacterManager.save_characters(characters, file_name)\r\n\r\n    elif args.action == \"load\":\r\n        try:\r\n            chars = CharacterManager.load_characters(args.file)\r\n            for char in chars:\r\n                print(char)\r\n        except FileNotFoundError:\r\n            print(f\"Error: File {args.file} not found.\")\r\n\r\nif __name__ == \"__main__\":\r\n    main()\r\n\r\n# TODO: create several characters in one CLI, save to one file, perhaps name file too\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/CLI.py b/CLI.py
+--- a/CLI.py	(revision 5fec0d4ba0fdc76f110c6b7c29c90a10486b01d2)
++++ b/CLI.py	(date 1746025694760)
+@@ -11,10 +11,18 @@
+     name = input("Character name: ")
+ 
+     valid_classes = {
+-        "Barbarian", "Bard","Cleric",
+-        "Druid", "Fighter", "Monk",
+-        "Paladin", "Ranger", "Rogue",
+-        "Sorcerer", "Warlock", "Wizard"
++        "Barbarian",
++        "Bard",
++        "Cleric",
++        "Druid",
++        "Fighter",
++        "Monk",
++        "Paladin",
++        "Ranger",
++        "Rogue",
++        "Sorcerer",
++        "Warlock",
++        "Wizard"
+     }
+ 
+     while True:
+@@ -61,13 +69,18 @@
+         characters = []
+         while True:
+             char = build_character()
+-            CharacterManager.save_characters([char], args.file)
++            characters.append(char)
++
+ 
+             add_more = input("Create another character? (y/n): ").strip().lower()
+             if add_more != 'y':
++
+                 break
+ 
+         file_name = input(f"Save characters to file ({args.file} by default): ").strip() or args.file
++        if not file_name.endswith(".json"):
++            file_name += ".json"
++
+         CharacterManager.save_characters(characters, file_name)
+ 
+     elif args.action == "load":
+@@ -81,4 +94,5 @@
+ if __name__ == "__main__":
+     main()
+ 
++# TODO : FIX, DOES NOT WORK !!!!!!
+ # TODO: create several characters in one CLI, save to one file, perhaps name file too

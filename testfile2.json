@@ -1,0 +1,43 @@
+[
+  {
+    "name": "Testname",
+    "character_class": "Cleric",
+    "stats": {
+      "STR": 99,
+      "DEX": 10,
+      "CON": 14,
+      "INT": 10,
+      "WIS": 15,
+      "CHA": 12
+    },
+    "inventory": [
+      {
+        "name": "testitem1",
+        "description": "testitemdesc1",
+        "value": 99,
+        "weight": 0,
+        "rarity": "Common"
+      },
+      {
+        "name": "testitem2",
+        "description": "testitemdesc2",
+        "value": 999,
+        "weight": 0,
+        "rarity": "Common"
+      }
+    ]
+  },
+  {
+    "name": "Testname2",
+    "character_class": "Sorcerer",
+    "stats": {
+      "STR": 10,
+      "DEX": 12,
+      "CON": 14,
+      "INT": 99,
+      "WIS": 12,
+      "CHA": 15
+    },
+    "inventory": []
+  }
+]
