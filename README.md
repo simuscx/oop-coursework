@@ -12,7 +12,7 @@ git clone github.com/simuscx/oop-coursework
 cd oop-coursework-main
 python3 -m venv venv
 activate venv
-pip install -r requirements.txt  # If needed
+pip install -r requirements.txt
 ```
 ### Run the CLI:
 ```
