@@ -8,8 +8,8 @@ The **DND Character Creator** is a Python-based CLI application designed to help
 ### How to run the program?
 Ensure Python is installed, then clone the repository and navigate to the project directory:
 ```bash
-git clone github.com/simuscx/oop-coursework
-cd oop-coursework-main
+git clone https://github.com/simuscx/oop-coursework
+cd oop-coursework
 python3 -m venv venv
 activate venv
 pip install -r requirements.txt
